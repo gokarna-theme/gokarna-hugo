@@ -448,6 +448,7 @@ table td {
   line-height: 1.7;
   margin-top: 50px;
   letter-spacing: 0.5px;
+  text-align: justify;
 }
 .post-content h1, .post-content h2, .post-content h3, .post-content h4 {
   scroll-margin-top: 55px;
