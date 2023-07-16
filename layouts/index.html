@@ -31,7 +31,9 @@
 
 {{ if os.FileExists "index-about.md" }}
 <div class="markdown-content">
-    {{ readFile "index-about.md" | markdownify }}
+    <center>
+        {{ readFile "index-about.md" | markdownify }}
+    </center>
 </div>
 {{ end }}
 
