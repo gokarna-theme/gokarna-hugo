@@ -16,7 +16,7 @@
         <div class="nav-links">
             {{ range .Site.Menus.main }}
             <div class="nav-link">
-                <a href="{{ .URL | absURL }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
+                <a href="{{ .URL | absURL }}" aria-label="{{ .Identifier }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
                     {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
                 </a>
             </div>
