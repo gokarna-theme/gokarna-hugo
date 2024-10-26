@@ -9,6 +9,7 @@ COPY requirements.txt ./
 RUN pip install --no-cache-dir -r requirements.txt
 RUN apk add geckodriver
 
-COPY screenshot.py .
+# Copy gokarna repo to WORKDIR
+COPY . .
 
 CMD [ "python", "./screenshot.py" ]
