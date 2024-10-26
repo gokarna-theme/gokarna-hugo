@@ -87,7 +87,9 @@ def main():
     if os.path.exists('/usr/bin/firefox'):
         options.binary_location = '/usr/bin/firefox'
 
-    driver = webdriver.Firefox(executable_path='/usr/bin/geckodriver', options=options)
+    service = Service('/usr/bin/geckodriver')
+
+    driver = webdriver.Firefox(service=service, options=options)
     # To offset screen size based on window size
     driver.set_window_size(1500, 1085)
 
