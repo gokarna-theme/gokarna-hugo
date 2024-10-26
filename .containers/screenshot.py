@@ -8,6 +8,7 @@ Setup:
 """
 
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.common.by import By
 from PIL import Image
@@ -82,12 +83,11 @@ def merge_home_images():
 def main():
     server_process = soldier.run('hugo --source="exampleSite/" server', background=True, shell=True)
 
+    service = Service()
     options = Options()
     options.add_argument('--headless')
     if os.path.exists('/usr/bin/firefox'):
         options.binary_location = '/usr/bin/firefox'
-
-    service = Service('/usr/bin/geckodriver')
 
     driver = webdriver.Firefox(service=service, options=options)
     # To offset screen size based on window size
