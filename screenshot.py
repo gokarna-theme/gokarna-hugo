@@ -84,8 +84,8 @@ def main():
 
     options = Options()
     options.add_argument('--headless')
-    if os.path.exists('/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox'):
-        options.binary_location = '/Applications/Firefox Developer Edition.app/Contents/MacOS/firefox'
+    if os.path.exists('/usr/bin/firefox'):
+        options.binary_location = '/usr/bin/firefox'
 
     driver = webdriver.Firefox(options=options)
     # To offset screen size based on window size
