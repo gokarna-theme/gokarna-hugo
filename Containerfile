@@ -4,12 +4,11 @@ FROM python:alpine
 
 WORKDIR /usr/src/app
 
-# Install dependencies
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-RUN apk add firefox geckodriver
-
 # Copy gokarna repo to WORKDIR
 COPY . .
+
+# Install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+RUN apk add firefox geckodriver
 
 CMD [ "python", "./screenshot.py" ]
