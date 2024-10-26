@@ -1,0 +1,3 @@
+selenium==4.10.0
+pillow
+soldier

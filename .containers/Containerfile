@@ -1,0 +1,14 @@
+# https://hub.docker.com/_/python/
+
+FROM python:alpine
+
+WORKDIR /usr/src/app
+
+# Install dependencies
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
+RUN apk add geckodriver
+
+COPY screenshot.py .
+
+CMD [ "python", "./screenshot.py" ]
