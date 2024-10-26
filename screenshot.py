@@ -80,7 +80,7 @@ def merge_home_images():
     print('Created merged image for hugo showcase')
 
 def main():
-    sever_process = soldier.run('cd exampleSite && hugo serve', background=True, shell=True)
+    server_process = soldier.run('hugo --source="exampleSite/" server', background=True, shell=True)
 
     options = Options()
     options.add_argument('--headless')
@@ -96,7 +96,7 @@ def main():
     merge_home_images()
 
     driver.quit()
-    sever_process.kill(with_honor=False)
+    server_process.kill(with_honor=False)
 
 if __name__ == '__main__':
     main()
