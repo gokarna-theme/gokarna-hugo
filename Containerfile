@@ -1,5 +1,3 @@
-# https://hub.docker.com/_/python/
-
 FROM python:alpine
 
 WORKDIR /usr/src/app
