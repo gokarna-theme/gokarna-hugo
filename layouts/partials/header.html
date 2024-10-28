@@ -16,7 +16,7 @@
         <div class="nav-links">
             {{ range .Site.Menus.main }}
             <div class="nav-link">
-                <a href="{{ .URL | absURL }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
+                <a href="{{ .URL | absURL }}" aria-label="{{ .Identifier }}" {{ if .Params.NewPage -}}target="_blank" {{- end -}}>
                     {{- .Pre | safeHTML }} {{ .Name }} {{ .Post | safeHTML -}}
                 </a>
             </div>
@@ -25,14 +25,14 @@
             <span class="nav-icons-divider"></span>
             <div class="nav-link dark-theme-toggle">
                 <span class="sr-only dark-theme-toggle-screen-reader-target"></span>
-                <a>
+                <a role="switch">
                     <span class="theme-toggle-icon" data-feather="moon"></span>
                 </a>
             </div>
 
             <div class="nav-link" id="hamburger-menu-toggle">
                 <span class="sr-only hamburger-menu-toggle-screen-reader-target">menu</span>
-                <a>
+                <a role="switch">
                     <span data-feather="menu"></span>
                 </a>
             </div>
@@ -48,7 +48,7 @@
                 {{ end }}
                 <li class="nav-item dark-theme-toggle">
                     <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
-                    <a>
+                    <a role="switch">
                         <span class="theme-toggle-icon" data-feather="moon"></span>
                     </a>
                 </li>
