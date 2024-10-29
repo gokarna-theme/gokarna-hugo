@@ -3,6 +3,6 @@ title: Hydra
 type: page
 ---
 
-### Motto
+## Motto
 
-Cut off one head and two will take their place
+Cut off one head, and two will take their place.
