@@ -4,11 +4,17 @@ set -eux
 
 # Build a Python container which runs screenshot.py
 
-# At least one platform must be installed to $PATH
+FORCE_REBUILD=0
+PLATFORM='podman'
 
-#readonly PLATFORM=buildah
-#readonly PLATFORM=docker
-readonly PLATFORM=podman
+while getopts fp:h flag
+do
+    case $flag in
+        f ) FORCE_REBUILD=1 ;;
+        p ) PLATFORM=$OPTARG ;;
+        \? | h | * ) printf '%b' 'generate-screenshots.sh [-f] [-p buildah|docker|podman]\n  -f: force image rebuild (skip check for existing image)\n  -p: platform binary (default: podman)\n' && exit 1 ;;
+    esac
+done
 
 readonly TAG='gokarna-screenshot.py-image'
 readonly NAME='gokarna-screenshot.py-container'
@@ -40,19 +46,7 @@ build_or_update ()
 
 main ()
 {
-    local force_rebuild=0
-
-    # If no arguments are given
-    if [ $# -eq 0 ]
-    then
-        return
-    elif [ "$1" = f ] || [ "$1" = -f ] || [ "$1" = --force ]
-    then
-            force_rebuild=1
-    fi
-
-    build_or_update $force_rebuild
-
+    build_or_update "$FORCE_REBUILD"
     $PLATFORM cp $NAME:/usr/src/app/images/ .
 }
 
