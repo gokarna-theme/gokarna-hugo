@@ -23,7 +23,12 @@ readonly NAME='gokarna-screenshot.py-container'
 
 run ()
 {
-    $PLATFORM rm $NAME
+    result=$($PLATFORM ps --all --quiet --filter name=$NAME)
+    if [ -n "$result" ]
+    then
+        $PLATFORM rm $NAME
+    fi
+
     $PLATFORM run --name=$NAME -- $TAG
 }
 
