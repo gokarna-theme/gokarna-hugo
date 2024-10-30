@@ -1,6 +1,12 @@
 #! /usr/bin/env dash
 
-PLATFORM=podman
+# Build a Python container which runs screenshot.py
+
+# At least one platform must be installed to $PATH
+
+#readonly PLATFORM=buildah
+#readonly PLATFORM=docker
+readonly PLATFORM=podman
 
 main ()
 {
