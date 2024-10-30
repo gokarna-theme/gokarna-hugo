@@ -1,5 +1,7 @@
 #! /usr/bin/env dash
 
+set -eux
+
 # Build a Python container which runs screenshot.py
 
 # At least one platform must be installed to $PATH
