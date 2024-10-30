@@ -12,7 +12,9 @@ do
     case $flag in
         f ) FORCE_REBUILD=1 ;;
         p ) PLATFORM=$OPTARG ;;
-        \? | h | * ) printf '%b' 'generate-screenshots.sh [-f] [-p buildah|docker|podman]\n  -f: force image rebuild (skip check for existing image)\n  -p: platform binary (default: podman)\n' && exit 1 ;;
+        \? | h | * )
+            printf '%b' 'generate-screenshots.sh [-f] [-p buildah|docker|podman]\n  -f: force image rebuild (skip check for existing image)\n  -p: platform binary (default: podman)\n' \
+                && exit 1 ;;
     esac
 done
 
