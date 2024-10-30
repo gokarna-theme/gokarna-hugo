@@ -13,6 +13,7 @@ main ()
     local tag='gokarna-screenshot.py-image'
     local name='gokarna-screenshot.py-container'
 
+    # Remove existing container
     "$PLATFORM" rm "$name"
 
     "$PLATFORM" build --tag="$tag" -- .
