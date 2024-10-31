@@ -37,4 +37,4 @@ main ()
     $PLATFORM cp $name:/usr/src/app/images/ .
 }
 
-main "$@"
+main
