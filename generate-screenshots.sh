@@ -16,10 +16,8 @@ while getopts p:h flag
 do
     case $flag in
         p ) PLATFORM=$OPTARG ;;
-        h )
-            usage 0 ;;
-        * )
-            usage 1 ;;
+        h ) usage 0 ;;
+        * ) usage 1 ;;
     esac
 done
 
