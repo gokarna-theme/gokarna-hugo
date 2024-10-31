@@ -4,13 +4,13 @@ set -eux
 
 # Build a Python container which runs screenshot.py
 
-PLATFORM='docker'
-
 usage ()
 {
-    printf '%b' 'usage: generate-screenshots.sh [-p buildah|docker|podman]\n'
+    printf '%b' 'usage: generate-screenshots.sh [-h] [-p buildah|DOCKER|podman]\n'
     exit "$1"
 }
+
+PLATFORM='docker'
 
 while getopts p:h flag
 do
@@ -21,20 +21,20 @@ do
     esac
 done
 
-readonly TAG='gokarna-screenshot.py-image'
-readonly NAME='gokarna-screenshot.py-container'
-
 main ()
 {
-    result=$($PLATFORM ps --all --quiet --filter name=$NAME)
+    local tag='gokarna-screenshot.py-image'
+    local name='gokarna-screenshot.py-container'
+
+    result=$($PLATFORM ps --all --quiet --filter name=$name)
     if [ -n "$result" ]
     then
-        $PLATFORM rm $NAME
+        $PLATFORM rm $name
     fi
 
-    $PLATFORM build --tag=$TAG -- .
-    $PLATFORM run --name=$NAME -- $TAG
-    $PLATFORM cp $NAME:/usr/src/app/images/ .
+    $PLATFORM build --tag=$tag -- .
+    $PLATFORM run --name=$name -- $tag
+    $PLATFORM cp $name:/usr/src/app/images/ .
 }
 
 main "$@"
