@@ -26,6 +26,8 @@ jobs:
           exit 0
         fi
 
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git checkout -b auto-update-screenshots
         git add images/
         git commit -m 'chore: update screenshots'
