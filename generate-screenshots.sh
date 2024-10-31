@@ -4,7 +4,7 @@ set -eux
 
 # Build a Python container which runs screenshot.py
 
-PLATFORM='podman'
+PLATFORM='docker'
 
 usage ()
 {
