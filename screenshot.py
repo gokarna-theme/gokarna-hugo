@@ -86,8 +86,8 @@ def main():
     service = Service()
     options = Options()
     options.add_argument('--headless')
-    if os.path.exists('/usr/bin/firefox'):
-        options.binary_location = '/usr/bin/firefox'
+    if os.getenv('FIREFOX_PATH'):
+        options.binary_location = os.getenv('FIREFOX_PATH')
 
     driver = webdriver.Firefox(service=service, options=options)
     # To offset screen size based on window size
