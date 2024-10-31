@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  run-docker:
+  update-screenshots:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
@@ -19,13 +19,17 @@ jobs:
     - name: Run screenshotter container
       run: docker run -v $(pwd):/app ghcr.io/gokarna-theme/gokarna-hugo/screenshotter
 
-    - name: See diffs
+    - name: Create PR
       run: |
         if [[ -z $(git status images --porcelain) ]]; then
           echo "No changes found"
           exit 0
         fi
 
+        git checkout -b auto-update-screenshots
+        git add images/
+        git commit -m 'chore: update screenshots'
+        git push origin auto-update-screenshots -f
         gh pr create -B main -H auto-update-screenshots --title 'chore: update screenshots' --body 'Created by Github action'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
