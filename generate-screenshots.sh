@@ -6,7 +6,7 @@ set -eux
 
 usage ()
 {
-    printf '%b' 'usage: generate-screenshots.sh [-h] [-p buildah|DOCKER|podman]\n'
+    printf '%b' 'usage: generate-screenshots.sh [-h] [-p DOCKER|podman]\n'
     exit "$1"
 }
 
