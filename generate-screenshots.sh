@@ -6,12 +6,20 @@ set -eux
 
 PLATFORM='podman'
 
+usage ()
+{
+    printf '%b' 'usage: generate-screenshots.sh [-p buildah|docker|podman]\n'
+    exit "$1"
+}
+
 while getopts p:h flag
 do
     case $flag in
         p ) PLATFORM=$OPTARG ;;
-        \? | h | * )
-            printf '%b' 'generate-screenshots.sh [-p buildah|docker|podman]\n  -p: platform binary (default: podman)\n' ;;
+        h )
+            usage 0 ;;
+        * )
+            usage 1 ;;
     esac
 done
 
