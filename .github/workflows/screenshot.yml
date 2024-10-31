@@ -8,6 +8,8 @@ on:
 jobs:
   run-docker:
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
 
     steps:
     - name: Check out the code
