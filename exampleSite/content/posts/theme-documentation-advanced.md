@@ -53,8 +53,8 @@ To show `Table of Contents`, update your config by adding
 ```toml
 [markup]
   [markup.tableOfContents]
-    startLevel = 2
-    endLevel = 4
+    startLevel = 1
+    endLevel = 3
     ordered = false
 ```
 
