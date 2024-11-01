@@ -86,7 +86,7 @@ The theme is inspired by, and accordingly named after, [Gokarna](https://en.wiki
 
 ## Performance
 
-Google Lighthouse desktop performance: 100%
+Google Lighthouse score: 100%
 
 ![Lighthouse Score](https://raw.githubusercontent.com/526avijitgupta/gokarna/main/images/lighthouse.png)
 
