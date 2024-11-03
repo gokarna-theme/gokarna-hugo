@@ -10,7 +10,7 @@
         {{ end }}
 
         <div class="nav-title">
-            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ cond (isset .Site.Params "markdownifytitles") (.Title | markdownify) .Title }}</a>
+            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ .Title | markdownify }}</a>
         </div>
 
         <div class="nav-links">

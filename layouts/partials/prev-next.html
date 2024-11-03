@@ -4,7 +4,7 @@
         <a href="{{ .RelPermalink }}">
             &#8592;
             {{ i18n "previous" }}:
-            {{ cond (isset .Site.Params "markdownifytitles") (.Title | markdownify) .Title }}
+            {{ .Title | markdownify }}
         </a>
     </p>
     <p class="prev-post-date">
@@ -18,7 +18,7 @@
     <p>
         <a href="{{ .RelPermalink }}">
             {{ i18n "next" }}:
-            {{ cond (isset .Site.Params "markdownifytitles") (.Title | markdownify) .Title }}
+            {{ .Title | markdownify }}
             &#8594;
         </a>
     </p>
