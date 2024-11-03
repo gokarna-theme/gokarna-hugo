@@ -1,6 +1,6 @@
 <div class="post container">
     <div class="post-header-section">
-        <h1>{{ cond .Site.Params.markdownifyTitles (.Title | markdownify) .Title }}</h1>
+        <h1>{{ cond (isset .Site.Params "markdownifytitles") (.Title | markdownify) .Title }}</h1>
 
         {{/* Determine whether to display the date & description based on tags */}}
 
