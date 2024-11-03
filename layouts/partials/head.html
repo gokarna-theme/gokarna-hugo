@@ -8,7 +8,7 @@
         }
     </style>
 
-    {{ $title := .Title | default .Site.Title }}
+    {{ $title := (cond .Site.Params.markdownifyTitles (.Title | markdownify) .Title) | default .Site.Title }}
     {{ $description := ((.Description | default (.Summary | default .Content) | default .Site.Params.Description) | plainify | truncate 160) }}
     {{ $image := .Params.image | default (.Scratch.Get "avatarImgSrc") }}
     {{ $siteKeywords := .Site.Params.MetaKeywords | default (slice) }}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     {{- $avatarImgSrc := .Site.Params.AvatarURL -}}
-    {{- if and (isset site.Params "avatarURL") (not (hasPrefix $avatarImgSrc "http")) -}}
+    {{- if and (isset .Site.Params "avatarURL") (not (hasPrefix $avatarImgSrc "http")) -}}
         {{- $avatarImgSrc = (urls.JoinPath $.Site.BaseURL ($.Site.Params.AvatarURL | default "")) -}}
     {{- end -}}
     {{- .Scratch.Set "avatarImgSrc" $avatarImgSrc -}}

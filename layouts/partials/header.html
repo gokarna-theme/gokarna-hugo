@@ -10,7 +10,7 @@
         {{ end }}
 
         <div class="nav-title">
-            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+            <a class="nav-brand" href="{{ .Site.BaseURL }}">{{ cond .Site.Params.markdownifyTitles (.Title | markdownify) .Title }}</a>
         </div>
 
         <div class="nav-links">
