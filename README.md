@@ -58,7 +58,7 @@ Light Mode                                                      | Dark Mode
 Follow the steps in [Theme Documentation - Basics](https://gokarna-hugo.netlify.app/posts/theme-documentation-basics/#installation).
 
 ```sh
-git submodule add https://github.com/526avijitgupta/gokarna.git themes/gokarna
+git submodule add https://github.com/gokarna-theme/gokarna-hugo.git themes/gokarna
 ```
 
 ## Customization

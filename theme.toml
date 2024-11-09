@@ -2,9 +2,9 @@ name = "Gokarna"
 description = "Gokarna is an opinionated theme with a focus on minimalism and simplicity"
 
 license = "GNU GPLv3"
-licenselink = "https://github.com/526avijitgupta/gokarna/blob/main/LICENSE"
+licenselink = "https://github.com/gokarna-theme/gokarna-hugo/blob/main/LICENSE"
 
-homepage = "https://github.com/526avijitgupta/gokarna"
+homepage = "https://github.com/gokarna-theme/gokarna-hugo"
 demosite = "https://gokarna-hugo.netlify.app"
 
 tags = ["blog", "minimal", "dark", "light", "responsive", "personal", "portfolio"]

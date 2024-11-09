@@ -77,7 +77,7 @@ title = "Gokarna"
   [[menu.main]]
     identifier = "github"
     pre = "<span data-feather='github'></span>"
-    url = "https://github.com/526avijitgupta/gokarna"
+    url = "https://github.com/gokarna-theme/gokarna-hugo"
     weight = 5
 
   [[menu.main]]

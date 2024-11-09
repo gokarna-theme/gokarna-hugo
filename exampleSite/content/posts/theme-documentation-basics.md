@@ -30,13 +30,13 @@ cd my-website
 
 ### b. Install the Theme {#install-the-theme}
 
-The theme's repository is: [https://github.com/526avijitgupta/gokarna](https://github.com/526avijitgupta/gokarna).
+The theme's repository is: [https://github.com/gokarna-theme/gokarna-hugo](https://github.com/gokarna-theme/gokarna-hugo).
 
 Make this repository a submodule of your Git project:
 
 ```bash
 git init
-git submodule add https://github.com/526avijitgupta/gokarna.git themes/gokarna
+git submodule add https://github.com/gokarna-theme/gokarna-hugo.git themes/gokarna
 ```
 
 ### c. Basic Configuration {#basic-configuration}
@@ -111,7 +111,7 @@ Two [content types](https://gohugo.io/content-management/types/) are supported i
 
 #### Using archetypes
 
-`hugo new` will automatically use an appropriate [archetype](https://gohugo.io/content-management/archetypes/#lookup-order) (see [`archetypes/`](https://github.com/526avijitgupta/gokarna/tree/main/archetypes)) and insert [front matter](https://gohugo.io/content-management/front-matter/) depending on the location of your content:
+`hugo new` will automatically use an appropriate [archetype](https://gohugo.io/content-management/archetypes/#lookup-order) (see [`archetypes/`](https://github.com/gokarna-theme/gokarna-hugo/tree/main/archetypes)) and insert [front matter](https://gohugo.io/content-management/front-matter/) depending on the location of your content:
 
 - `hugo new posts/$post-name.md` automatically sets `type: "post"`
 - `hugo new $page-name.md` automatically sets `type: "page"`
@@ -147,7 +147,7 @@ The website can be automatically published and hosted with [Netlify](https://www
 
 In addition to [Hugo global configuration](https://gohugo.io/overview/configuration/) and [menu configuration](#basic-configuration), Gokarna lets you define the following [parameters](https://gohugo.io/methods/site/params/) in your site configuration.
 
-See this sample `config.toml`, which uses Gokarna's default values, and [exampleSite's `config.toml`](https://github.com/526avijitgupta/gokarna/blob/main/exampleSite/config.toml):
+See this sample `config.toml`, which uses Gokarna's default values, and [exampleSite's `config.toml`](https://github.com/gokarna-theme/gokarna-hugo/blob/main/exampleSite/config.toml):
 
 ```toml
 [params]
