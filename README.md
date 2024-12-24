@@ -28,6 +28,7 @@ Gokarna is fast, responsive, and [SEO-friendly](#performance).
 - [Syntax highlighting](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#syntax-highlighting)
 - [Custom HTML, JavaScript, and CSS](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#custom-head-and-footer-html)
 - [Configurable Table of Contents](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#table-of-contents)
+- Catalan (Spanish), Deutsch (German), French, and Polish [translations](https://github.com/gokarna-theme/gokarna-hugo/tree/main/i18n)
 - Google Lato fonts
 - Auto-generated RSS feed
 
@@ -77,6 +78,12 @@ Examples include:
 - [Display recent or popular posts on the home page](https://gokarna-hugo.netlify.app/posts/theme-documentation-basics/#display-posts-on-the-home-page)
 - [Inject custom HTML](https://gokarna-hugo.netlify.app/posts/theme-documentation-basics/#custom-head-html)
     Use the `<head>` and `<footer>` elements to add arbitrary HTML, JavaScript, and CSS.
+
+## Translations
+
+Change [`languageCode`](https://gohugo.io/content-management/multilingual/#configure-languages) to use one of [our translations](https://github.com/gokarna-theme/gokarna-hugo/tree/main/i18n).
+
+Missing a language? Make Gokarna multilingual by [creating a translation table](https://gohugo.io/functions/lang/translate/#simple-translations).
 
 ## Inspiration
 
