@@ -366,7 +366,7 @@ Will produce this footer:
 
 `copyright` can include [Markdown syntax](https://www.markdownguide.org/tools/hugo/). This is best used for including hyperlinks, emoji, or text formatting.
 
-The years of `.Date` and `.Lastmod` are used to create a date range for your copyrighted material. [dateFormat](/posts/theme-documentation-basics/#date-format) **must** be set in `config.toml` if `.Lastmod` is present in any front matter.
+The years of `.Date` and `.Lastmod` are used to create a date range for your copyrighted material.
 
 ## Minification
 

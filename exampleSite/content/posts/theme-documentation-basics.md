@@ -168,8 +168,6 @@ See this sample `config.toml`, which uses Gokarna's default values, and [example
   customHeadHTML = ""
 
   # Configure how post dates are displayed
-  # dateFormat must be set if lastmod is declared in front matter, or
-  # enableGitInfo is true
   dateFormat = "January 2, 2006"
   
   # Home page meta description
@@ -243,8 +241,6 @@ Examples are available in the [advanced documentation](/posts/theme-documentatio
 ### Date format 
 
 [Configure how posts date are displayed](https://gohugo.io/functions/time/format/), using [date strings](https://pkg.go.dev/time#pkg-constants).
-
-dateFormat **must be set** if [`enableGitInfo`](https://gohugo.io/methods/page/gitinfo/#prerequisites) is `true`, or [`.Lastmod`](https://gohugo.io/methods/page/lastmod/) is present in any front matter.
 
 ```toml 
 [params]
