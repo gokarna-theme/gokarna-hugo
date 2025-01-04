@@ -179,12 +179,7 @@ img {
   display: block;
   padding: 0 6px;
 }
-.nav-link a svg {
-  height: 20px;
-  margin: -3px auto;
-  stroke-width: 2;
-  width: 20px;
-}
+.nav-link a svg,
 .nav-item a svg {
   height: 20px;
   margin: -3px auto;

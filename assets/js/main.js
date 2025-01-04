@@ -38,6 +38,24 @@ function ready() {
     // Do the injection
     SVGInjector(svgsToInject);
 
+    const observer = new MutationObserver(() => {
+        normalizeSvgPaths();
+    });
+
+    observer.observe(document.body, { childList: true, subtree: true });
+
+    function normalizeSvgPaths() {
+        document.querySelectorAll('a .svg-inject path').forEach(path => {
+            const bbox = path.getBBox();
+            const scaleX = 20 / bbox.width;
+            const scaleY = 20 / bbox.height;
+            const scale = Math.min(scaleX, scaleY);
+
+            path.setAttribute('transform', `scale(${scale}) translate(${-bbox.x}, ${-bbox.y})`);
+            path.setAttribute('fill', 'currentColor');
+        });
+    }
+
     document.getElementById('hamburger-menu-toggle').addEventListener('click', () => {
         const hamburgerMenu = document.getElementsByClassName('nav-hamburger-list')[0]
         const hamburgerMenuToggleTarget = document.getElementById("hamburger-menu-toggle-target")

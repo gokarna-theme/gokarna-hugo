@@ -92,6 +92,12 @@ title = "Gokarna"
     url = "/index.xml"
     weight = 7
 
+  [[menu.main]]
+    identifier = "bluesky"
+    pre = "<img class='svg-inject' src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg' />"
+    url = "/index.xml"
+    weight = 8
+
 [markup]
   [markup.tableOfContents]
     startLevel = 1
