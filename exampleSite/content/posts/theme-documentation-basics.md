@@ -227,7 +227,7 @@ Set the avatar's size as: `size-xs`, `size-s`, `size-m`, `size-l`, or `size-xl`.
   avatarSize = "size-m"
 ```
 
-### Avatar size
+### Font size
 
 Set the main font-size for the content. Default is `17.5px`.
 
