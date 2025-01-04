@@ -227,6 +227,15 @@ Set the avatar's size as: `size-xs`, `size-s`, `size-m`, `size-l`, or `size-xl`.
   avatarSize = "size-m"
 ```
 
+### Avatar size
+
+Set the main font-size for the content. Default is `17.5px`.
+
+```toml
+[params]
+  fontSize = "20px"
+```
+
 ### Custom Head HTML
 
 Add arbitrary HTML code to the [`<head>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head).
