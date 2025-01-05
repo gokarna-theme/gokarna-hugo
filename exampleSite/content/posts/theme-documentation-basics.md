@@ -227,15 +227,6 @@ Set the avatar's size as: `size-xs`, `size-s`, `size-m`, `size-l`, or `size-xl`.
   avatarSize = "size-m"
 ```
 
-### Font size
-
-Set the main font-size for the content. Default is `17.5px`.
-
-```toml
-[params]
-  fontSize = "20px"
-```
-
 ### Custom Head HTML
 
 Add arbitrary HTML code to the [`<head>` element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/head).
@@ -303,6 +294,15 @@ Place favicons into the `static/` directory. The following files are supported:
 - `android-chrome-512x512.png` (512x512)
 
 Favicons can be generated using services such as [favicon.io](https://favicon.io), or [realfavicongenerator.net](https://realfavicongenerator.net/).
+
+### Font size
+
+Set the main font-size for the content. Default is `17.5px`.
+
+```toml
+[params]
+  fontSize = "20px"
+```
 
 ### Footer
 
