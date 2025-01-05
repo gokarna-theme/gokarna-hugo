@@ -297,11 +297,11 @@ Favicons can be generated using services such as [favicon.io](https://favicon.io
 
 ### Font size
 
-Set the main font-size for the content. Default is `17.5px`.
+Set the content [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size).
 
 ```toml
 [params]
-  fontSize = "20px"
+  fontSize = "17.5px"
 ```
 
 ### Footer
