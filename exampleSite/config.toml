@@ -95,7 +95,7 @@ title = "Gokarna"
   [[menu.main]]
     identifier = "bluesky"
     pre = "<img class='svg-inject' src='https://upload.wikimedia.org/wikipedia/commons/7/7a/Bluesky_Logo.svg' />"
-    url = "/index.xml"
+    url = "https://www.buymeacoffee.com/avijitgupta"
     weight = 8
 
 [markup]
