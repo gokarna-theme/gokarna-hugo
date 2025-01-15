@@ -28,7 +28,7 @@ Gokarna is fast, responsive, and [SEO-friendly](#performance).
 - [Syntax highlighting](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#syntax-highlighting)
 - [Custom HTML, JavaScript, and CSS](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#custom-head-and-footer-html)
 - [Configurable Table of Contents](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#table-of-contents)
-- Español (Spanish/Catalan), Deutsch (German), Français (French), and Polski (Polish) [translations](https://github.com/gokarna-theme/gokarna-hugo/tree/main/i18n)
+- Español (Spanish/Catalan), Deutsch (German), Français (French), Polski (Polish), and Русский (Russian) [translations](https://github.com/gokarna-theme/gokarna-hugo/tree/main/i18n)
 - Google Lato fonts
 - Auto-generated RSS feed
 
