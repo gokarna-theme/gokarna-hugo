@@ -84,7 +84,8 @@ The `weight` attribute can be added in the markdown metadata for `post` types. W
 ### About description text
 
 In extension to the basic configuration with the `description` field, it's also possible to write the about section using markdown.
-Create a file called `index-about.md` in the `content` directory and write your content there.
+
+Create a file called `_index.md` in the `content` directory and write your content there.
 
 > **Attention**: Don't use frontmatter in this file. It would also render it.
 
