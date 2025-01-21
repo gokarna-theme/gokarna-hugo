@@ -444,7 +444,7 @@ table td {
   transition: fill 0.15s ease;
 }
 
-.markdown-content {
+.home-content {
   line-height: 1.25;
   width: 80%;
   margin: 0 auto;
@@ -593,7 +593,7 @@ table td {
     width: auto;
   }
 
-  .markdown-content, .home-posts {
+  .home-content, .home-posts {
     width: auto;
     margin: 0;
   }
