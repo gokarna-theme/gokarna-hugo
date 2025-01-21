@@ -24,8 +24,12 @@
 	{{ end }}
 
 	{{ if $displayDate }}
-          <p class="post-date">{{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Date}}
-           {{ if lt .Date .Lastmod }} | Updated {{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Lastmod }}{{ end }}
+          <p class="post-date">
+              {{ .ReadingTime }} min read | {{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Date }}
+
+              {{ if lt .Date .Lastmod }}
+                  | Updated {{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Lastmod }}
+              {{ end }}
           </p>
 	{{ end }}
 
