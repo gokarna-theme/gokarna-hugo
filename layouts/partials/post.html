@@ -48,7 +48,7 @@
     </div>
 
     <div class="prev-next">
-        {{ if eq .Site.Params.TogglePreviousAndNextButtons "true" }}
+        {{ if (eq .Site.Params.TogglePreviousAndNextButtons true) }}
             {{ if or .PrevInSection .NextInSection }}
                 {{ partial "prev-next.html" . }}
             {{ end }}
