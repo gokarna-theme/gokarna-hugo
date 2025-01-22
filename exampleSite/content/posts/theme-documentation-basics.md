@@ -16,9 +16,6 @@ Follow these steps to initialize your new website.
 
 If you are new to [Hugo](https://gohugo.io/), we suggest following this [great documentation for beginners](https://gohugo.io/getting-started/quick-start/).
 
-<!-- Set human-readable heading IDs:
-    https://gohugo.io/content-management/cross-references/#heading-ids -->
-
 ### a. Create Your Project {#create-your-project}
 
 Hugo provides a `new` subcommand to create a new website:
