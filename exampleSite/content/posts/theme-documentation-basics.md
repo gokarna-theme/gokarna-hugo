@@ -195,7 +195,7 @@ See this sample `config.toml`, which uses Gokarna's default values, and [example
 
   # Show the previous and next post in your timeline: "true", "false"
   # Incompatible with Weight
-  togglePreviousAndNextButtons = "false"
+  togglePreviousAndNextButtons = false
 ```
 
 ### Accent color
@@ -325,7 +325,7 @@ If any post front matter contains `weight`, the posts will not appear by Date. S
 
 ```toml
 [params]
-  togglePreviousAndNextButtons = "false"
+  togglePreviousAndNextButtons = false
 ```
 
 ### robots.txt
