@@ -328,6 +328,15 @@ If any post front matter contains `weight`, the posts will not appear by Date. S
   togglePreviousAndNextButtons = "false"
 ```
 
+### Reading time
+
+Display a post's [estimated reading time](https://gohugo.io/methods/page/readingtime/) in minutes.
+
+```toml
+[params]
+  displayReadingTime = false
+```
+
 ### robots.txt
 
 [Automatically generate](https://gohugo.io/templates/robots/) a `robots.txt` file, used to ['manage crawler traffic to your site'](https://developers.google.com/search/docs/crawling-indexing/robots/intro).
