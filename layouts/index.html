@@ -29,10 +29,12 @@
 </div>
 {{ end }}
 
-{{ if os.FileExists "index-about.md" }}
-<div class="markdown-content">
-    {{ readFile "index-about.md" | markdownify }}
-</div>
+{{ if (or
+    (and (fileExists "content/_index.md") .Content)
+    (fileExists "content/index-about.md")) }}
+        <section class="home-content">
+            {{ or .Content (readFile "index-about.md" | markdownify) }}
+        </section>
 {{ end }}
 
 {{ if isset .Site.Params "showpostsonhomepage" }}

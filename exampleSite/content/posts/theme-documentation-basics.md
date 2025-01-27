@@ -255,7 +255,7 @@ Examples are available in the [advanced documentation](/posts/theme-documentatio
 
 ### Display content on the home page
 
-Markdown content in `content/index-about.md` will be rendered on the home page, below the social icons.
+Markdown content in `content/_index.md` will be rendered on the home page, below the social icons.
 
 ### Display posts on the home page
 
