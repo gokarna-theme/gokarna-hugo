@@ -1,0 +1,19 @@
+name = "Gokarna"
+description = "Gokarna is an opinionated theme with a focus on minimalism and simplicity"
+
+license = "GNU GPLv3"
+licenselink = "https://github.com/gokarna-theme/gokarna-hugo/blob/main/LICENSE"
+
+homepage = "https://github.com/gokarna-theme/gokarna-hugo"
+demosite = "https://gokarna-hugo.netlify.app"
+
+tags = ["blog", "minimal", "dark", "light", "responsive", "personal", "portfolio"]
+
+features = ["Blog", "Responsive", "Minimal", "Clean", "Simple", "SEO", "Bootstrap", "Fast", "Dark", "Light"]
+
+authors = [
+  {name = "Yash Mehrotra", homepage = "https://yashmehrotra.com"},
+  {name = "Avijit Gupta", homepage = "https://526avijitgupta.github.io"}
+]
+
+min_version = "0.81.0"
