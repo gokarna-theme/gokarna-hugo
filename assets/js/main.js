@@ -45,7 +45,7 @@ function ready() {
     observer.observe(document.body, { childList: true, subtree: true });
 
     function normalizeSvgPaths() {
-        document.querySelectorAll('a .svg-inject').forEach(path => {
+        document.querySelectorAll('.nav-link a .svg-inject').forEach(path => {
             const bbox = path.getBBox();
             const scaleX = 20 / bbox.width;
             const scaleY = 20 / bbox.height;
