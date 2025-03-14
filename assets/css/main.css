@@ -12,12 +12,14 @@
   font-family: Lato;
   font-weight: 400;
   src: url("/fonts/Lato-Regular.ttf");
+  font-display: swap;
 }
 
 @font-face {
   font-family: Lato;
   font-weight: 700;
   src: url("/fonts/Lato-Bold.ttf");
+  font-display: swap;
 }
 
 html {
