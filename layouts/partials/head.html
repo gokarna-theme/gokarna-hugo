@@ -42,7 +42,8 @@
     <link rel="stylesheet" type="text/css" href="{{ $cssNormalize.RelPermalink }}" media="print">
 
     {{ $cssMain := resources.Get "css/main.css" | minify }}
-    <link rel="stylesheet" type="text/css" href="{{ $cssMain.RelPermalink }}">
+    <link rel="preload" as="style" href="{{ $cssMain.RelPermalink }}" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="{{ $cssMain.RelPermalink }}"></noscript>
 
     {{ $cssDark := resources.Get "css/dark.css" | minify }}
     <link id="dark-theme" rel="stylesheet" href="{{ $cssDark.RelPermalink }}">
