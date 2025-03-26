@@ -249,7 +249,7 @@ a:hover .feather-sun {
   margin-left: 30%;
   overflow: hidden;
   padding: 40px 0;
-  position: relative;
+  position: absolute;
   text-align: center;
   width: 40%;
 }
