@@ -16,6 +16,10 @@ Gokarna is an opinionated theme with a focus on minimalism and simplicity.
 
 ## Support the developer
 
+<a href="https://github.com/sponsors/gokarna-theme">
+  <img src="https://img.shields.io/badge/Sponsor-❤-red?style=for-the-badge" width="170" height="37" alt="Sponsor us">
+</a>
+
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/avijitgupta)
 
 ## Features
