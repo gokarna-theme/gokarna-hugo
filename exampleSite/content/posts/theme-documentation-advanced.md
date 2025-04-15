@@ -319,6 +319,25 @@ and the `metaKeywords` specified in the config.toml:
   metaKeywords = ["blog", "gokarna", "hugo"]
 ```
 
+## Page title and H1
+
+By default, Gokarna uses `.Title` for the `<title>` and `<h1>` elements, in addition to the OpenGraph (`og:title`) and Twitter (`twitter:title`) properties within `<meta>` elements.
+
+```yaml
+---
+title: "8 Facts About Me - #7 Will Shock You!"
+---
+```
+
+To define H1 separately from the page title, use the `h1` param in your front matter:
+
+```yaml
+---
+title: "8 Facts About Me - #7 Will Shock You!"
+h1: "8 Facts About Me"
+---
+```
+
 ## Hide tags, date or description of posts
 
 Tags can be used to categorize posts (e.g.: Project or Blog), and be hidden on
