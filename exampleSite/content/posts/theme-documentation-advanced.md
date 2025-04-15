@@ -321,7 +321,6 @@ and the `metaKeywords` specified in the config.toml:
 
 ## Page title and H1
 
-
 By default, Gokarna uses `.Title` for the `<title>` and `<h1>` elements, in addition to the OpenGraph (`og:title`) and Twitter (`twitter:title`) properties within `<meta>` elements.
 
 ```yaml
