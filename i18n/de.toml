@@ -5,7 +5,7 @@
 [error404]
     other = 'Diese Seite existiert (noch) nicht, gehen Sie zu zurück auf'
 [home]
-    other = 'Los'
+    other = 'Startseite'
 [nothing]
     other = 'Hier gibt es noch nichts zu sehen 😉'
 [previous]

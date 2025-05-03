@@ -144,7 +144,7 @@ The website can be automatically published and hosted with [Netlify](https://www
 
 In addition to [Hugo global configuration](https://gohugo.io/overview/configuration/) and [menu configuration](#basic-configuration), Gokarna lets you define the following [parameters](https://gohugo.io/methods/site/params/) in your site configuration.
 
-See this sample `config.toml`, which uses Gokarna's default values, and [exampleSite's `config.toml`](https://github.com/gokarna-theme/gokarna-hugo/blob/main/exampleSite/config.toml):
+See this sample `hugo.toml`, which uses Gokarna's default values, and [exampleSite's `hugo.toml`](https://github.com/gokarna-theme/gokarna-hugo/blob/main/exampleSite/hugo.toml):
 
 ```toml
 [params]

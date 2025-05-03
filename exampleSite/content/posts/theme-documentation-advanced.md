@@ -34,7 +34,7 @@ This is my blog.
 
 ### Page
 
-We introduced this type to distinguish between blog posts and normal markdown pages. The reason to create this was to give the user complete freedom in creating their website. You can use this to create a portfolio of your projects or showcase your designs. The possibilites are endless and the choice is yours.
+We introduced this type to distinguish between blog posts and normal markdown pages. The reason to create this was to give the user complete freedom in creating their website. You can use this to create a portfolio of your projects or showcase your designs. The possibilities are endless and the choice is yours.
 
 ```markdown
 ---
@@ -73,7 +73,7 @@ Detailed configuration can be found on [Hugo's official documentation](https://g
 
 ## Weights
 
-The `weight` attribute can be added in the markdown metadata for `post` types. We have an option in our config.toml: `params.showPostsOnHomePage` which allows you to:
+The `weight` attribute can be added in the markdown metadata for `post` types. We have an option in our hugo.toml: `params.showPostsOnHomePage` which allows you to:
 
 1. Show popular posts on home page if the value is set to `popular`. It sorts the all the posts by it's weight attribute in ascending order.
 2. Show recent posts on home page if the value is set to `recent`
@@ -210,7 +210,7 @@ Integration with any analytics tool: This was a personal pet peeve. User privacy
 
 We preferred privacy friendly tools like [Umami](https://umami.is/) & [Fathom Analytics](https://usefathom.com/), but the downside was that no theme supported them out of the box which led to either changing the theme source code or contributing supporting code to the original theme (both of which are good ways to extend the theme, but not our ideal choice)
 
-Giving users the freedom to add anything in the HTML via config.toml seemed like an elegant way to solve the problem.
+Giving users the freedom to add anything in the HTML via hugo.toml seemed like an elegant way to solve the problem.
 
 ```toml
 [params]
@@ -219,16 +219,17 @@ Giving users the freedom to add anything in the HTML via config.toml seemed like
   '''
 ```
 
-### Katex
+### KaTeX
 
-Katex is a math typesetting library for the web which lets you write beautiful equations. To use it, add the javascript as mentioned in [their documentation](https://katex.org/docs/browser.html) in our `params.customHeadHTML`.
+KaTeX is a math typesetting library for the web which lets you write beautiful equations. To use it, add the javascript as mentioned in [their documentation](https://katex.org/docs/browser.html) in our `params.customHeadHTML`.
 
 ```toml
 [params]
   customHeadHTML = '''
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.css" integrity="sha384-Xi8rHCmBmhbuyyhbI88391ZKP2dmfnOl4rT9ZfRI7mLTdk1wblIUnrIq35nqwEvC" crossorigin="anonymous">
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/katex.min.js" integrity="sha384-X/XCfMm41VSsqRNQgDerQczD69XqmjOOOwYQvr/uuC+j4OPoNhVgjdGFwhvN02Ja" crossorigin="anonymous"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.0/dist/contrib/auto-render.min.js" integrity="sha384-+XBljXPPiv+OzfbB3cVmLHf4hdUFHlWNZN5spNQ7rmHTXpd7WvJum6fIACpNNfIR" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css" integrity="sha384-5TcZemv2l/9On385z///+d7MSYlvIEw9FuZTIdZ14vJLqWphw7e7ZPuOiCHJcFCP" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js" integrity="sha384-cMkvdD8LoxVzGF/RPUKAcvmm49FQ0oxwDF3BGKtDXcEc+T1b2N+teh/OJfpU0jr6" crossorigin="anonymous"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js" integrity="sha384-hCXGrW6PitJEwbkoStFjeJxv+fSOOQKOPbJxSfM6G5sWZjAyWhXiTIIAmQqnlLlh" crossorigin="anonymous"
+        onload="renderMathInElement(document.body);"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function() {
         renderMathInElement(document.body, {
@@ -246,13 +247,12 @@ Katex is a math typesetting library for the web which lets you write beautiful e
   '''
 ```
 
-> Note: Make sure you use the latest version of katex and use the correct script tags as described in [their documentation](https://katex.org/docs/browser.html)
+> Note: Make sure you use the latest version of KaTeX and use the correct script tags as described in [their documentation](https://katex.org/docs/browser.html)
 
-Then the equation `$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$` wrapped by double `$$` would be displayed as:
+Then the equation `$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$` wrapped by double `$$` is displayed as:
 
    $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
-
-The equation `$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$` wrapped by single `$` would be displayed inline as $y_t = \beta_0 + \beta_1 x_t + \epsilon_t$.
+ihl equation `$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$` wrapped by single `$` is displayed inline as $y_t = \beta_0 + \beta_1 x_t + \epsilon_t$.
 
 ### Comments
 
@@ -274,7 +274,7 @@ An example with commento:
 
 Hugo lets you choose the color scheme for the codeblocks. You can choose from the options here: https://xyproto.github.io/splash/docs/all.html
 
-After choosing your theme, just update the `pygmentsStyle`  attribute in config.toml.
+After choosing your theme, just update the `pygmentsStyle`  attribute in hugo.toml.
 
 ```toml
 pygmentsStyle = "monokai"
@@ -312,7 +312,7 @@ tags: ["hello", "world"]
 ---
 ```
 
-and the `metaKeywords` specified in the config.toml:
+and the `metaKeywords` specified in the hugo.toml:
 
 ```markdown
 [params]
@@ -350,7 +350,7 @@ A post's date and description can be hidden if it has at least one tag listed in
 
 Define the [copyright notice for your site](https://gohugo.io/methods/site/copyright/). The notice will only be displayed on [page Kinds](#content-types).
 
-For example, the following configuration in `config.toml` and front matter respectively...
+For example, the following configuration in `hugo.toml` and front matter respectively...
 
 ```toml
 copyright = "Verbatim copying and distribution of this entire article are permitted worldwide, without royalty, in any medium, provided this notice is preserved."

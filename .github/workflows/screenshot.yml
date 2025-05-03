@@ -32,6 +32,6 @@ jobs:
         git add images/
         git commit -m 'chore: update screenshots'
         git push origin auto-update-screenshots -f
-        gh pr create -B main -H auto-update-screenshots --title 'chore: update screenshots' --body 'Created by Github action'
+        gh pr create -B main -H auto-update-screenshots --title 'chore: update screenshots' --body 'Created by GitHub action'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
