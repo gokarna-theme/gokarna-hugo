@@ -10,15 +10,15 @@ showTableOfContents: true
 
 Gokarna is an opinionated theme with a focus on minimalism and simplicity.
 
-## Content Types
+## Content types
 
-This theme supports two types of content types: `post` and `page`. To specify them, you need to add them in your markdown metadata.
+Gokarna supports two [content types](https://gohugo.io/content-management/types/): `post` and `page` - they are specified in [front matter](https://gohugo.io/content-management/front-matter/).
 
 ### Post
 
-This is the default blog post type which will be shown in your "Posts" section and who's tags will be indexed. Basically, a normal blog post.
+A blog post - listed in the `/posts/` section, with indexed [`/tags/`](https://gohugo.io/content-management/taxonomies/#assign-terms-to-content).
 
-```markdown
+```md
 ---
 title: "Hello, world!"
 date: 2021-01-01
@@ -28,39 +28,44 @@ type: "post"
 tags: ["blog"]
 ---
 
-# Hello World!
+## Hello World!
+
 This is my blog.
 ```
 
 ### Page
 
-We introduced this type to distinguish between blog posts and normal markdown pages. The reason to create this was to give the user complete freedom in creating their website. You can use this to create a portfolio of your projects or showcase your designs. The possibilites are endless and the choice is yours.
+A typical Markdown page - perfect for detailing your portfolio, projects, or anything else you can imagine.
 
-```markdown
+```md
 ---
 title: "Hello, world!"
 image: "/path/to/image.png"
 type: "page"
 ---
 
-# Projects
-Keep an eye on this space for my upcoming projects
+## Projects
+
+Keep an eye on this space for my upcoming projects!
 ```
 
 ### Table of Contents
 
-To show `Table of Contents`, update your config by adding
+To enable an optional [Table of Contents](https://gohugo.io/configuration/markup/#table-of-contents) for posts and pages, add the following to `config.toml`:
+
 ```toml
 [markup]
   [markup.tableOfContents]
-    startLevel = 1
-    endLevel = 3
+    startLevel = 2
+    endLevel = 4
     ordered = false
 ```
 
-And then on each page add the attribute `showTableOfContents: true` **(Note: It is disabled by default)**
+Note that `.Title` is also used as `<h1>`. You should ['avoid using multiple `<h1>` elements on one page'](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/Heading_Elements#avoid_using_multiple_h1_elements_on_one_page), therefore a `startLevel` of `2` is recommended.
 
-```markdown
+Set `showTableOfContents` to `true` in front matter where you want the Table of Contents to appear:
+
+```yaml
 ---
 title: "Hello, world!"
 image: "/path/to/image.png"
@@ -69,122 +74,49 @@ showTableOfContents: true
 ---
 ```
 
-Detailed configuration can be found on [Hugo's official documentation](https://gohugo.io/getting-started/configuration-markup/#table-of-contents)
+## Copyright notice
 
-## Weights
+Define the [copyright notice for your site](https://gohugo.io/methods/site/copyright/). The notice will only be displayed on [page Kinds](#content-types).
 
-The `weight` attribute can be added in the markdown metadata for `post` types. We have an option in our config.toml: `params.showPostsOnHomePage` which allows you to:
-
-1. Show popular posts on home page if the value is set to `popular`. It sorts the all the posts by it's weight attribute in ascending order.
-2. Show recent posts on home page if the value is set to `recent`
-3. Do not show anything if the variable is unset or an empty string.
-
-## Homepage
-
-### About description text
-
-In extension to the basic configuration with the `description` field, it's also possible to write the about section using markdown.
-
-Create a file called `_index.md` in the `content` directory and write your content there.
-
-> **Attention**: Don't use frontmatter in this file. It would also render it.
-
-```markdown
-# Gokarna
-Gokarna is a small temple town located in the Uttara Kannada district of Karnataka state in southern India.
-
-## Beaches
-Something about beaches, **which is *very* important**.
-
-- every
-- beach
-- is beautiful
-```
-
-Having the above about section in place, results in the following homepage:
-
-![Markdown about description](/images/theme-documentation-advanced/homepage-markdown-about-description.png "Markdown about description")
-
-
-## Icons
-Gokarna supports popular social media icons (Github, Linkedin, Twitter, StackOverflow, Dribbble, etc.) out of the box. See full list of supported icons [on GitHub](https://github.com/gokarna-theme/gokarna-hugo/tree/main/static/icons).
-
-### Icons on homepage
-
-To display icons on the homepage, simply update the `socialIcons` config param with a list of name and url of each icon. The specified `name` should exactly match one of the names from [the `icons` directory](https://github.com/gokarna-theme/gokarna-hugo/tree/main/static/svg/icons).
-If you want to add more icons, you can download the svg directly from [Simple Icons' website](https://simpleicons.org/)  and place them in your local icons directory (`/static/svg/icons/`)
+For example, the following configuration in `config.toml` and front matter...
 
 ```toml
-  [params]
-    socialIcons = [
-      {name = "twitter", url = "https://example.com"},
-      {name = "linkedin", url = "https://example.com"},
-      {name = "stackoverflow", url = "https://example.com"},
-    ]
+copyright = "Verbatim copying and distribution of this entire article are
+permitted worldwide, without royalty, in any medium, provided this notice is
+preserved."
+
+[params]
+  footer = "The Marauders"
 ```
 
-Preview:
+```yaml
+date: 2020-06-17
+lastmod: 2024-02-05
+```
 
-![Icons on homepage Preview](/images/theme-documentation-advanced/icons-homepage-preview.png "Icons on homepage Preview")
+Will produce this footer:
 
+> © 2020-2024 The Marauders Verbatim copying and distribution of this entire article are permitted worldwide, without royalty, in any medium, provided this notice is preserved.
 
-### Icons in header
+Note that the years of `.Date` and `.Lastmod` are used to create a date range for your copyrighted material.
 
-[Feather](https://feathericons.com) icons has a comprehensive list of icons which are more general purpose and not limited to social media.
-Therefore, we use feather as an additional source of icons. Here is an example of how to add custom icons in the header using feather:
+`copyright` can include [Markdown syntax](https://www.markdownguide.org/tools/hugo/). This is best used for including hyperlinks, emoji, or text formatting.
+
+## Custom HTML
+
+Inject arbitrary HTML into `<head>` and `<footer>`, using `customHeadHTML` and `customFooterHTML` respectively.
+
+### Analytics
+
+Add your preferred analytics tool (such as [Umami](https://umami.is/), or [Fathom Analytics](https://usefathom.com/)) via `config.toml`.
 
 ```toml
-  [[menu.main]]
-    identifier = "github"
-    url = "https://github.com"
-    weight = 3
-    # Using feather-icons
-    pre = "<span data-feather='github'></span>"
-```
-
-The same icon in this case could also be added without feather:
-
-```toml
-  [[menu.main]]
-    identifier = "github"
-    url = "https://www.buymeacoffee.com/"
-    weight = 3
-    # Without using feather-icons
-    pre = "<img class='svg-inject' src='/icons/github.svg' />"
-```
-
-You can add `params` allowing menu link to open in a new tab, for example: 
-```toml
-[[menu.main]]
-  identifier = "github"
-  url = "https://github.com/zerodahero"
-  weight = 4
-  # We use feather-icons: https://feathericons.com/
-  pre = "<span data-feather='github'></span>"
-  [menu.main.params]
-    newPage = true
-```
-
-## Custom Head and Footer HTML
-
-The goal of this feature is to give the user more control over the theme. It's functioning is very straightforward - "You can inject any HTML you want in the `<head>` tag" . This may seem simple at first, but it opens up a lot of possibilities.
-
-## Custom Comment HTML 
-
-Similar to custom head and footer HTML, you can add custom HTML for comments at the end of every post. Its in a `<div>` with the id `comments` which can be then customized with your external CSS.
-
-The purpose of this is to freely use any comments platform of your choosing
-
-### For example
-```toml 
-customCommentHTML = """
-<script src="https://utteranc.es/client.js"
-    repo="526avijitgupta/gokarna"
-    issue-term="title"
-    theme="github-dark"
-    crossorigin="anonymous"
-    async></script>
-"""
+[params]
+  customHeadHTML = '''
+    <script async defer data-website-id="website-id"
+        src="https://analytics.example.com/script.js">
+    </script>
+  '''
 ```
 
 ### Bring your own scripts
@@ -204,24 +136,32 @@ Add your own JavaScript or CSS by putting them in the `static/` folder and impor
   '''
 ```
 
-### Analytics
+### Comments section
 
-Integration with any analytics tool: This was a personal pet peeve. User privacy is our primary concern and this meant not using Google Analytics or any of the popular tools.
+Add a comments section to the end of posts by providing a `customCommentHTML` script from your platform of choice.
 
-We preferred privacy friendly tools like [Umami](https://umami.is/) & [Fathom Analytics](https://usefathom.com/), but the downside was that no theme supported them out of the box which led to either changing the theme source code or contributing supporting code to the original theme (both of which are good ways to extend the theme, but not our ideal choice)
+For example:
 
-Giving users the freedom to add anything in the HTML via config.toml seemed like an elegant way to solve the problem.
+<!-- toml syntax highlighting gives forward slashes an ugly red foreground and
+    black background -->
 
-```toml
-[params]
-  customHeadHTML = '''
-    <script async defer data-website-id="website-id" src="https://analytics.example.com/script.js"></script>
-  '''
+```
+customCommentHTML = """
+    <script src="https://utteranc.es/client.js"
+        repo="526avijitgupta/gokarna"
+        issue-term="title"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+    </script>
+    """
 ```
 
-### Katex
+You can style the resulting `<div id="comments">` with CSS.
 
-Katex is a math typesetting library for the web which lets you write beautiful equations. To use it, add the javascript as mentioned in [their documentation](https://katex.org/docs/browser.html) in our `params.customHeadHTML`.
+### KaTeX
+
+KaTeX is a math typesetting library that lets you write beautiful equations. To use it, add the JavaScript mentioned in [their documentation](https://katex.org/docs/browser.html) to `customHeadHTML`.
 
 ```toml
 [params]
@@ -246,29 +186,87 @@ Katex is a math typesetting library for the web which lets you write beautiful e
   '''
 ```
 
-> Note: Make sure you use the latest version of katex and use the correct script tags as described in [their documentation](https://katex.org/docs/browser.html)
+Ensure that the latest version of KaTeX is used, per [the documentation](https://katex.org/docs/browser.html).
 
-Then the equation `$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$` wrapped by double `$$` would be displayed as:
+For example, the equation `$$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$` (wrapped by double `$$`) is displayed as:
 
    $$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$$
 
-The equation `$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$` wrapped by single `$` would be displayed inline as $y_t = \beta_0 + \beta_1 x_t + \epsilon_t$.
+Moreover, the equation `$y_t = \beta_0 + \beta_1 x_t + \epsilon_t$` (wrapped by single `$`) is displayed in-line as $y_t = \beta_0 + \beta_1 x_t + \epsilon_t$
 
-### Comments
+## Icons
 
-Integration with any comments SDK is possible. All you have to do is add the relevant HTML/JavaScript in the `customFooterHTML` param.
+Gokarna bundles popular social media icons (e.g. GitHub, LinkedIn, X, StackOverflow, and Dribbble) out of the box.
 
-An example with commento:
+The full list is available on [on GitHub](https://github.com/gokarna-theme/gokarna-hugo/tree/main/static/svg/icons).
+
+### Header
+
+[Feather Icons](https://feathericons.com) boast a comprehensive array of general use icons. Unlike [the home page](#home-page), you do not need to download additional Feather Icons.
+
+To use Feather Icons in your [navigation bar menu](https://gohugo.io/configuration/menus/), you must provide:
+
+- An `identifier` or `name`
+
+    Display text to the right of the icon by using `name`. Otherwise, use `identifier`.
+
+    Note that an `identifier` must be unique.
+
+- The target `url`
+- The item's `weight`
+
+    Lower weights are listed first, appearing leftmost.
+
+- A `pre` string, containing the relevant icon
 
 ```toml
-[params]
-  customFooterHTML = '''
-    <div id="commento"></div>
-    <script defer src="{{ .Site.Params.CommentoURL }}/js/commento.js"></script>
-    <noscript>Please enable JavaScript to load the comments.</noscript>
-  '''
+  [[menu.main]]
+    identifier = "github"
+    url = "https://github.com"
+    weight = 3
+    # Using feather-icons
+    pre = "<span data-feather='github'></span>"
 ```
 
+The `data-feather='github'` element must match the icon's name seen on [Feather Icons'](https://feathericons.com) website - examples include `data-feather='file'`, and `data-feather='list'`.
+
+You can additionally specify that a link should be opened in a new tab:
+
+```toml
+[[menu.main]]
+  identifier = "github"
+  url = "https://github.com"
+  weight = 3
+  pre = "<span data-feather='github'></span>"
+  [menu.main.params]
+    newPage = true
+```
+
+To inject a non-Feather icon, use the `svg-inject` class, and provide a local SVG:
+
+```toml
+  [[menu.main]]
+    identifier = "github"
+    url = "https://github.com"
+    weight = 3
+    # Without using feather-icons
+    pre = "<img class='svg-inject' src='/svg/icons/github.svg' />"
+```
+
+### Home page
+
+To display icons on the home page, update the `socialIcons` param with the `name` of the icon, and a `url` to your profile on that platform.
+
+To use icons that Gokarna doesn't bundle: download the SVG from [Simple Icons](https://simpleicons.org/), and move it to `static/svg/icons/`.
+
+```toml
+  [params]
+    socialIcons = [
+      {name = "twitter", url = "https://example.com"},
+      {name = "linkedin", url = "https://example.com"},
+      {name = "stackoverflow", url = "https://example.com"},
+    ]
+```
 
 ## Syntax Highlighting
 
@@ -292,7 +290,7 @@ We make sure your pages are social media ready.
 
 ![Social Media Preview](/images/theme-documentation-advanced/preview.png "Social Media Preview")
 
-```markdown
+```md
 ---
 title: "Hello, world!"
 image: "/path/to/image.png"
@@ -305,7 +303,7 @@ image: "/path/to/image.png"
 
 The keywords relevant for SEO are composed of the page `tags` as defined below:
 
-```markdown
+```md
 ---
 title: "Hello, world!"
 tags: ["hello", "world"]
@@ -314,7 +312,7 @@ tags: ["hello", "world"]
 
 and the `metaKeywords` specified in the config.toml:
 
-```markdown
+```md
 [params]
   metaKeywords = ["blog", "gokarna", "hugo"]
 ```
@@ -346,34 +344,54 @@ A post's date and description can be hidden if it has at least one tag listed in
       weight = 2
 ```
 
-## Site-wide copyright notice
+## Install as a Hugo module
 
-Define the [copyright notice for your site](https://gohugo.io/methods/site/copyright/). The notice will only be displayed on [page Kinds](#content-types).
+1. Install `go` and `hugo`
 
-For example, the following configuration in `config.toml` and front matter respectively...
+    Package managers such as [Homebrew](https://brew.sh/) (Mac, Linux) and [WinGet](https://learn.microsoft.com/en-us/windows/package-manager/winget/#use-winget) (Windows) can be used.
 
-```toml
-copyright = "Verbatim copying and distribution of this entire article are permitted worldwide, without royalty, in any medium, provided this notice is preserved."
-```
+2. Initialise your website as a module - [using your Git repository as its name](https://www.nickgracilla.com/posts/master-hugo-modules-managing-themes-as-modules/#initialize-your-hugo-project)
 
-```
-date: 2020-06-17
-lastmod: 2024-02-05
-```
+    ```sh
+    hugo mod init github.com/<your_user>/<your_project>
+    ```
 
-Will produce this footer:
+3. Add Gokarna to `config.toml`
 
-> © 2020-2024 The Marauders Verbatim copying and distribution of this entire article are permitted worldwide, without royalty, in any medium, provided this notice is preserved.
+    ```toml
+    [module]
+      [[module.imports]]
+        path = "github.com/gokarna-theme/gokarna-hugo"
+    ```
 
-`copyright` can include [Markdown syntax](https://www.markdownguide.org/tools/hugo/). This is best used for including hyperlinks, emoji, or text formatting.
+    [The `theme` key can now be removed](https://www.nickgracilla.com/posts/master-hugo-modules-managing-themes-as-modules/#get-the-projects-module-dependencies) from `config.toml`.
 
-The years of `.Date` and `.Lastmod` are used to create a date range for your copyrighted material.
+4. Download Gokarna
 
-## Minification
+    ```sh
+    hugo mod get -u github.com/gokarna-theme/gokarna-hugo
+    ```
 
-`hugo`'s HTML output can be [minified](https://gohugo.io/hugo-pipes/minification/#usage), resulting in smaller files. This makes your site more performant (especially when paired with compression), and may confer a better [Google Lighthouse](https://pagespeed.web.dev/) score.
+5. (Optional) Add `go.mod` and `go.sum` to your repository
+
+    ```sh
+    git add go.mod go.sum
+    git commit -m 'chore(modules): add gokarna'
+    ```
+
+    Useful for building your site with a CI/CD pipeline, such as [GitHub Actions](https://docs.github.com/en/actions/about-github-actions/understanding-github-actions) - the [actions-hugo](https://github.com/peaceiris/actions-hugo) workflow is a good starting point.
+
+See the documentation provided by [Hugo](https://gohugo.io/hugo-modules/use-modules/) and [Nick Gracilla](https://www.nickgracilla.com/posts/master-hugo-modules-managing-themes-as-modules/#how-to-use-hugo-themes-as-modules) for more information.
+
+## Google Lighthouse
+
+### Minify HTML
+
+`hugo`'s HTML output can be [minified](https://gohugo.io/configuration/minify/), resulting in smaller files. This makes your site more performant (especially when paired with compression), and may confer a better [Google Lighthouse](https://pagespeed.web.dev/) score.
 
 ```toml
 [minify]
     minifyOutput = true
 ```
+
+You can also specify the `hugo` option `--minify` at runtime.
