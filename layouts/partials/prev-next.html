@@ -1,29 +1,31 @@
-{{ with .PrevInSection }}
-<div class="prev-post">
-    <p>
-        <a href="{{ .RelPermalink }}">
-            &#8592;
-            {{ i18n "previous" }}:
-            {{ .Title | markdownify }}
-        </a>
-    </p>
-    <p class="prev-post-date">
-        {{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Date}}
-    </p>
-</div>
-{{ end }}
-
-{{ with .NextInSection }}
-<div class="next-post">
-    <p>
-        <a href="{{ .RelPermalink }}">
-            {{ i18n "next" }}:
-            {{ .Title | markdownify }}
-            &#8594;
-        </a>
-    </p>
-        <p class="next-post-date">
+<div class="post-navigation">
+    {{ with .PrevInSection }}
+    <div class="prev-post">
+        <p>
+            <a href="{{ .RelPermalink }}">
+                &#8592;
+                {{ i18n "previous" }}:
+                {{ .Title | markdownify }}
+            </a>
+        </p>
+        <p class="prev-post-date">
             {{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Date}}
         </p>
+    </div>
+    {{ end }}
+
+    {{ with .NextInSection }}
+    <div class="next-post">
+        <p>
+            <a href="{{ .RelPermalink }}">
+                {{ i18n "next" }}:
+                {{ .Title | markdownify }}
+                &#8594;
+            </a>
+        </p>
+            <p class="next-post-date">
+                {{ dateFormat (or .Site.Params.dateFormat "January 2, 2006") .Date}}
+            </p>
+    </div>
+    {{ end }}
 </div>
-{{ end }}
