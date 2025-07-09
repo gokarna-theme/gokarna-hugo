@@ -20,7 +20,7 @@
     <ul class="gk-social-icons-list">
         {{ range .Site.Params.SocialIcons }}
         <li class="gk-social-icon">
-            <a href="{{ .url }}" {{ if .rel }}rel="{{ .rel }}"{{ end }} aria-label="Learn more on {{ .name }}">
+            <a href="{{ .url }}" target="_blank" rel="{{ if .rel }}{{ .rel }} {{ end }}noopener noreferrer" aria-label="Learn more on {{ .name }}">
                 <img class="svg-inject" src="{{ relURL "svg/icons/" }}{{ .name | lower }}.svg" alt="">
             </a>
         </li>
