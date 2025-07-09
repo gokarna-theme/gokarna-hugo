@@ -640,6 +640,12 @@ table td {
   overflow: hidden;
 }
 
+.post-navigation::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .prev-post {
   float: left;
   text-align: left;
