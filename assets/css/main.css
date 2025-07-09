@@ -640,6 +640,10 @@ table td {
   overflow: hidden;
 }
 
+.post-navigation {
+  padding: 40px 0;
+}
+
 .post-navigation::after {
   content: "";
   display: table;
