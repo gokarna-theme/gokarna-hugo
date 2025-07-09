@@ -34,6 +34,10 @@ body {
   margin-bottom: 170px;
 }
 
+body:has(.post-navigation) {
+  margin-bottom: 80px;
+}
+
 b,
 strong {
   font-weight: bold;
