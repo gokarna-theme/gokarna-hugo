@@ -649,9 +649,9 @@ table td {
 }
 
 .post-navigation::after {
+  clear: both;
   content: "";
   display: table;
-  clear: both;
 }
 
 .prev-post {
