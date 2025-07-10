@@ -34,7 +34,7 @@ body {
   margin-bottom: 170px;
 }
 
-body:has(.post-navigation) {
+body.blog-post.has-post-navigation {
   margin-bottom: 80px;
 }
 
