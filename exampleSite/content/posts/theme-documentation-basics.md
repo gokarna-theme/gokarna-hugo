@@ -296,9 +296,11 @@ Favicons can be generated using services such as [favicon.io](https://favicon.io
 
 Set the content [`font-size`](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size).
 
+Note that '[defining font sizes in px is not accessible](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size#pixels)'.
+
 ```toml
 [params]
-  fontSize = "17.5px"
+  fontSize = "1.094rem" # equal to 17.5px
 ```
 
 ### Footer
