@@ -1,0 +1,18 @@
+[Recent]
+  other = '最近的文章'
+[Popular]
+  other = '文章'
+[error404]
+  other = '這個頁面並不存在'
+[home]
+  other = '首頁'
+[nothing]
+  other = '目前沒有東西存在 😉'
+[previous]
+  other = '前一則'
+[next]
+  other = '下一則'
+[tags]
+  other = '標籤'
+[Posts]
+    other = '文章'
