@@ -61,7 +61,7 @@ blockquote {
 }
 
 hr {
-  color: var(--dark-secondary-color);
+  color: var(--dark-tertiary-color);
 }
 
 table thead {
