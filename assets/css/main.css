@@ -511,7 +511,7 @@ table td {
 .list-posts .post-title {
   margin: 18px 0 0 15px;
 }
-.list-posts a {
+.list-posts .post-title a {
   text-decoration: none;
 }
 .post-title .post-link,
