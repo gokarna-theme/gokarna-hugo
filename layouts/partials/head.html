@@ -50,6 +50,10 @@
     {{ $jsBundle := resources.Match "js/**.js" | resources.Concat "js/bundle.js" | minify | resources.Fingerprint "sha256" }}
     <script src="{{ $jsBundle.RelPermalink }}" integrity="{{ $jsBundle.Data.Integrity }}"></script>
 
+    {{ range .AlternativeOutputFormats }}
+    {{ printf "<link rel=%q type=%q href=%q title=%q>" .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
+    {{ end }}
+
     <!-- Option for user to inject custom html -->
     {{ if .Site.Params.CustomHeadHTML }}
     {{ .Site.Params.CustomHeadHTML | safeHTML }}
