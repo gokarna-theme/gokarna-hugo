@@ -133,27 +133,21 @@ function toggleTheme(event) {
 }
 
 function matchThemeColor() {
-    themeColor = document.getElementById("theme-color");
+    const themeColor = document.getElementById("theme-color");
     if (themeColor) {
         themeColor.setAttribute('content', window.getComputedStyle(document.documentElement).backgroundColor);
     }
 }
 
 function setTheme(themeToSet, targets) {
-    if (themeToSet === 'light') {
-        darkThemeCss.disabled = true;
+    // When enabling, need to wait until CSS is parsed before matching it.
+    const awaitingDarkCss = themeToSet !== 'light' && darkThemeCss.disabled;
+    if (awaitingDarkCss) {
+        darkThemeCss.addEventListener('load', matchThemeColor, { once: true });
+    }
+    darkThemeCss.disabled = themeToSet === 'light';
+    if (!awaitingDarkCss) {
         matchThemeColor();
-    } else {
-        if (darkThemeCss.disabled) {
-            // When enabling, need to wait until CSS is parsed before matching it.
-            darkThemeCss.addEventListener('load', function onCssLoad() {
-                matchThemeColor();
-                darkThemeCss.removeEventListener('load', onCssLoad);
-            });
-            darkThemeCss.disabled = false;
-        } else {
-            matchThemeColor();
-        }
     }
     targets.forEach((target) => {
         target.querySelector('a').innerHTML = feather.icons[THEME_TO_ICON_CLASS[themeToSet].split('-')[1]].toSvg();
