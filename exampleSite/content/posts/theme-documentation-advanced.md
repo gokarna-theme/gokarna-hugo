@@ -270,6 +270,15 @@ An example with commento:
 ```
 
 
+### Custom CSS
+
+You may also want to extend the existing CSS or add your own JS files. For such modifications or longer custom HTML, overriding the `layouts/partials/custom-head.html` partial may prove more flexible as regular templating can be used. For including a custom CSS; consider the following example:
+```html
+{{ $customStyle := resources.Get "css/custom.css" | minify }}
+<link rel="stylesheet" href="{{ $customStyle.RelPermalink }}" />
+```
+
+
 ## Syntax Highlighting
 
 Hugo lets you choose the color scheme for the codeblocks. You can choose from the options here: https://xyproto.github.io/splash/docs/all.html

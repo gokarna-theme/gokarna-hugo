@@ -55,7 +55,8 @@
     {{ printf "<link rel=%q type=%q href=%q title=%q>" .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
 
-    <!-- Option for user to inject custom html -->
+    <!-- Options for user to inject custom html -->
+    {{- partial "custom-head.html" . -}}
     {{ if .Site.Params.CustomHeadHTML }}
     {{ .Site.Params.CustomHeadHTML | safeHTML }}
     {{ end }}

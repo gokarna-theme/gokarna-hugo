@@ -233,7 +233,9 @@ Add arbitrary HTML code to the [`<head>` element](https://developer.mozilla.org/
   customHeadHTML = "<script>console.log('Any HTML')</script>"
 ```
 
-Examples are available in the [advanced documentation](/posts/theme-documentation-advanced/#bring-your-own-scripts).
+Furthermore, for longer HTML fragments or requiring templating, you can override `layouts/partials/custom-head.html` which is shipped as an empty partial by the theme.
+
+Examples for both are available in the [advanced documentation](/posts/theme-documentation-advanced/#bring-your-own-scripts).
 
 ### Date format 
 
