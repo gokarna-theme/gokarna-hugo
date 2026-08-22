@@ -47,7 +47,7 @@ baseURL = "https://example.org/"
 defaultContentLanguage = "en"
 # Automatically generate robots.txt
 enableRobotsTXT = true
-languageCode = "en"
+locale = "en"
 theme = "gokarna"
 title = "My New Hugo Site"
 

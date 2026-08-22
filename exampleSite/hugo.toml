@@ -2,7 +2,7 @@ baseURL = "https://gokarna-hugo.netlify.app"
 defaultContentLanguage = "en"
 enableEmoji = true
 enableRobotsTXT = true
-languageCode = "en"
+locale = "en"
 # Choose one of emacs, trac or perldoc
 pygmentsStyle = "monokai"
 theme = "gokarna"

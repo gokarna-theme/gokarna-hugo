@@ -85,7 +85,7 @@ Examples include:
 
 ## Translations
 
-Change [`languageCode`](https://gohugo.io/content-management/multilingual/#configure-languages) to use one of [our translations](https://github.com/gokarna-theme/gokarna-hugo/tree/main/i18n).
+Change [`locale`](https://gohugo.io/configuration/languages/) to use one of [our translations](https://github.com/gokarna-theme/gokarna-hugo/tree/main/i18n).
 
 Missing a language? Make Gokarna multilingual by [creating a translation table](https://gohugo.io/functions/lang/translate/#simple-translations).
 
