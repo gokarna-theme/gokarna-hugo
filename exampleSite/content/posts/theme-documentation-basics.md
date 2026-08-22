@@ -235,7 +235,7 @@ Add arbitrary HTML code to the [`<head>` element](https://developer.mozilla.org/
 
 Furthermore, for longer HTML fragments or requiring templating, you can override `layouts/partials/custom-head.html` which is shipped as an empty partial by the theme.
 
-Examples for both are available in the [advanced documentation](/posts/theme-documentation-advanced/#bring-your-own-scripts).
+Examples are available in the advanced documentation, for [`customHeadHTML`](/posts/theme-documentation-advanced/#bring-your-own-scripts) and for [the custom head partial](/posts/theme-documentation-advanced/#custom-head-partial).
 
 ### Date format 
 

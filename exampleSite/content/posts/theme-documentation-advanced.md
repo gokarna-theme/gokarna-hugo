@@ -169,6 +169,19 @@ You can add `params` allowing menu link to open in a new tab, for example:
 
 The goal of this feature is to give the user more control over the theme. It's functioning is very straightforward - "You can inject any HTML you want in the `<head>` tag" . This may seem simple at first, but it opens up a lot of possibilities.
 
+### Custom head partial
+
+For longer HTML fragments, or additions that need Hugo templating, override the `layouts/partials/custom-head.html` partial. The theme ships it empty. It is rendered inside `<head>` immediately before `customHeadHTML`, so when both add the same thing, `customHeadHTML` wins.
+
+Being a regular template, it gives you Hugo functions such as `relURL`, `resources.Get` and `minify`, and it can include other partials. To add your own stylesheet, place it at `assets/css/custom.css` and write:
+
+```html
+{{ $customStyle := resources.Get "css/custom.css" | minify }}
+<link rel="stylesheet" href="{{ $customStyle.RelPermalink }}">
+```
+
+Note that `resources.Get` reads from the `assets/` folder, not the `static/` folder used by the `customHeadHTML` examples below.
+
 ## Custom Comment HTML 
 
 Similar to custom head and footer HTML, you can add custom HTML for comments at the end of every post. Its in a `<div>` with the id `comments` which can be then customized with your external CSS.
@@ -267,15 +280,6 @@ An example with commento:
     <script defer src="{{ .Site.Params.CommentoURL }}/js/commento.js"></script>
     <noscript>Please enable JavaScript to load the comments.</noscript>
   '''
-```
-
-
-### Custom CSS
-
-You may also want to extend the existing CSS or add your own JS files. For such modifications or longer custom HTML, overriding the `layouts/partials/custom-head.html` partial may prove more flexible as regular templating can be used. For including a custom CSS; consider the following example:
-```html
-{{ $customStyle := resources.Get "css/custom.css" | minify }}
-<link rel="stylesheet" href="{{ $customStyle.RelPermalink }}" />
 ```
 
 
