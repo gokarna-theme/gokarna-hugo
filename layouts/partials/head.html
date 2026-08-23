@@ -39,6 +39,8 @@
     <!-- SEO canonicals: helps Google understand your site better when using marketing campaign tagging etc -->
     <link rel="canonical" href="{{ .Permalink }}">
 
+    {{ partial "json-ld.html" . }}
+
     {{ $cssMain := resources.Get "css/main.css" | minify }}
     <link rel="stylesheet" type="text/css" href="{{ $cssMain.RelPermalink }}">
 
