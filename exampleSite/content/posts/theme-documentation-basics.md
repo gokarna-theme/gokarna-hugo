@@ -283,14 +283,21 @@ The number of posts displayed on the home page can be changed by setting `number
 
 ### Favicons
 
-Place favicons into the `static/` directory. The following files are supported:
+There are two options to set your favicon. You can either put files in the `static/` directory, the following files are supported:
 
+- `favicon.svg`
+- `favicon.ico` (usually 16x16 or 32x32 or both combined)
 - `apple-touch-icon.png` (180x180)
 - `favicon-32x32.png` (32x32)
 - `favicon-16x16.png` (16x16)
-- `mstile-150x150.png` (150x150)
-- `android-chrome-192x192.png` (192x192)
-- `android-chrome-512x512.png` (512x512)
+
+Alternatively, you can put these files in the `assets/` directory, or place only:
+
+- `favicon.svg`
+- `favicon.ico` (usually 16x16 or 32x32 or both combined)
+- `favicon.png` (should be 180x180 or larger)
+
+in there, and apple-touch-icon and the 32x32 and 16x16 versions will be created for you.
 
 Favicons can be generated using services such as [favicon.io](https://favicon.io), or [realfavicongenerator.net](https://realfavicongenerator.net/).
 
