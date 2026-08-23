@@ -1,0 +1,66 @@
+{{- $schema := dict -}}
+
+{{- $person := dict "@type" "Person" "name" site.Title -}}
+{{- if site.Params.avatar -}}
+  {{- $person = merge $person (dict "image" (dict "@type" "ImageObject" "url" (site.Params.avatar | absURL))) -}}
+{{- end -}}
+
+{{- if .IsHome -}}
+  {{- $schema = dict 
+    "@context" "https://schema.org" 
+    "@type" "WebSite" 
+    "@id" (printf "%s#website" site.BaseURL) 
+    "url" site.BaseURL 
+    "name" site.Title 
+    "description" (site.Params.description | default site.Title | plainify | chomp) 
+    "publisher" $person
+  -}}
+{{- else if .IsPage -}}
+  {{- $rawDesc := .Description | default .Summary -}}
+  {{- $cleanDesc := $rawDesc | plainify | htmlUnescape | replaceRE `\r?\n` " " | replaceRE `\s+` " " | truncate 160 -}}
+
+  {{- $webSiteReference := dict
+    "@type" "WebSite"
+    "@id" (printf "%s#website" site.BaseURL)
+    "url" site.BaseURL
+    "name" site.Title
+  -}}
+
+  {{- $postSchema := dict
+    "@context" "https://schema.org"
+    "@type" "BlogPosting"
+    "mainEntityOfPage" (dict "@type" "WebPage" "@id" .Permalink)
+    "headline" .Title
+    "description" $cleanDesc
+    "datePublished" (.PublishDate.Format "2006-01-02T15:04:05-07:00")
+    "dateModified" (.Lastmod.Format "2006-01-02T15:04:05-07:00")
+    "author" $person
+    "publisher" $person
+    "isPartOf" (dict "@id" (printf "%s#website" site.BaseURL))
+  -}}
+
+  {{- $itemList := slice -}}
+  {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 1 "name" ("Home" | safeJS) "item" (dict "@type" "WebPage" "@id" site.BaseURL "name" ("Home" | safeJS))) -}}
+  {{- if ne .Section "" -}}
+    {{- $sectionPage := site.GetPage .Section -}}
+    {{- $sectionName := $sectionPage.Title | default (humanize .Section) -}}
+    {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" ($sectionName | safeJS) "item" (dict "@type" "WebPage" "@id" $sectionPage.Permalink "name" ($sectionName | safeJS))) -}}
+    {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 3 "name" (.Title | safeJS) "item" (dict "@type" "WebPage" "@id" .Permalink "name" (.Title | safeJS))) -}}
+  {{- else -}}
+    {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" (.Title | safeJS) "item" (dict "@type" "WebPage" "@id" .Permalink "name" (.Title | safeJS))) -}}
+  {{- end -}}
+
+  {{- $breadcrumbSchema := dict
+    "@context" "https://schema.org"
+    "@type" "BreadcrumbList"
+    "@id" (printf "%s#breadcrumb" .Permalink)
+    "itemListElement" $itemList
+  -}}
+  {{- $schema = dict "@context" "https://schema.org" "@graph" (slice $webSiteReference $postSchema $breadcrumbSchema) -}}
+{{- end -}}
+
+{{- if $schema -}}
+  {{- $json := $schema | jsonify -}}
+  {{- $json = replace $json "\\/" "/" -}}
+  {{ printf "<script type=\"application/ld+json\">\n%s\n</script>" $json | safeHTML }}
+{{- end -}}
