@@ -40,14 +40,17 @@
   -}}
 
   {{- $itemList := slice -}}
-  {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 1 "name" ("Home" | safeJS) "item" (dict "@type" "WebPage" "@id" site.BaseURL "name" ("Home" | safeJS))) -}}
+  {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 1 "name" "Home" "item" (dict "@type" "WebPage" "@id" site.BaseURL "name" "Home")) -}}
   {{- if ne .Section "" -}}
-    {{- $sectionPage := site.GetPage .Section -}}
-    {{- $sectionName := $sectionPage.Title | default (humanize .Section) -}}
-    {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" ($sectionName | safeJS) "item" (dict "@type" "WebPage" "@id" $sectionPage.Permalink "name" ($sectionName | safeJS))) -}}
-    {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 3 "name" (.Title | safeJS) "item" (dict "@type" "WebPage" "@id" .Permalink "name" (.Title | safeJS))) -}}
+     {{- with site.GetPage .Section -}}
+       {{- $sectionName := .Title | default (humanize $.Section) -}}
+       {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" $sectionName "item" (dict "@type" "WebPage" "@id" .Permalink "name" $sectionName)) -}}
+       {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 3 "name" $.Title "item" (dict "@type" "WebPage" "@id" $.Permalink "name" $.Title)) -}}
+     {{- else -}}
+       {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" (dict "@type" "WebPage" "@id" .Permalink "name" .Title)) -}}
+     {{- end -}}
   {{- else -}}
-    {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" (.Title | safeJS) "item" (dict "@type" "WebPage" "@id" .Permalink "name" (.Title | safeJS))) -}}
+     {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 2 "name" .Title "item" (dict "@type" "WebPage" "@id" .Permalink "name" .Title)) -}}
   {{- end -}}
 
   {{- $breadcrumbSchema := dict
