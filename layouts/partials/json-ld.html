@@ -1,8 +1,8 @@
 {{- $schema := dict -}}
 
 {{- $person := dict "@type" "Person" "name" site.Title -}}
-{{- if site.Params.avatar -}}
-  {{- $person = merge $person (dict "image" (dict "@type" "ImageObject" "url" (site.Params.avatar | absURL))) -}}
+{{- if site.Params.avatarURL -}}
+  {{- $person = merge $person (dict "image" (dict "@type" "ImageObject" "url" (site.Params.avatarURL | absURL))) -}}
 {{- end -}}
 
 {{- if .IsHome -}}
