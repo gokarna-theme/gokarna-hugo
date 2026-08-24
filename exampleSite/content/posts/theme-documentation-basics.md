@@ -283,7 +283,7 @@ The number of posts displayed on the home page can be changed by setting `number
 
 ### Favicons
 
-There are two options to set your favicon. You can either put files in the `static/` directory, the following files are supported:
+There are two options to set your favicons. The first option is to put the files in the `static/` directory, the following files are supported:
 
 - `favicon.svg`
 - `favicon.ico` (usually 16x16 or 32x32 or both combined)
