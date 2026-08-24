@@ -53,7 +53,7 @@
     {{ end }}
 
     <!-- Favicon -->
-    {{- partial "favicon.html" . -}}
+    {{- partialCached "favicon.html" . -}}
 
     <!-- Options for user to inject custom html -->
     {{- partial "custom-head.html" . -}}
