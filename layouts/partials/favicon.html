@@ -1,0 +1,46 @@
+    {{- with resources.Get "favicon.svg" }}
+    <link rel="icon" type="image/svg+xml" href="{{ .RelPermalink }}">
+    {{- else -}}
+    {{- if fileExists "static/favicon.svg" }}
+    <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+    {{- end -}}
+    {{- end -}}
+
+    {{- with resources.Get "favicon.ico" }}
+    <link rel="icon" type="image/x-icon" href="{{ .RelPermalink }}">
+    {{- else -}}
+    {{- if fileExists "static/favicon.ico" }}
+    <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+    {{- end -}}
+    {{- end -}}
+
+    {{- with resources.Get "favicon.png" -}}
+    {{- $png32 := .Resize "32x32 png" -}}
+    {{- $png16 := .Resize "16x16 png" -}}
+    {{- $apple := .Resize "180x180 png" -}}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ $png32.RelPermalink }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ $png16.RelPermalink }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ $apple.RelPermalink }}">
+    {{- else -}}
+    {{- with resources.Get "favicon-32x32.png" }}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ .RelPermalink }}">
+    {{- else -}}
+    {{- if fileExists "static/favicon-32x32.png" }}
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}">
+    {{- end -}}
+    {{- end -}}
+    {{- with resources.Get "favicon-16x16.png" }}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ .RelPermalink }}">
+    {{- else -}}
+    {{- if fileExists "static/favicon-16x16.png" }}
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
+    {{- end -}}
+    {{- end -}}
+    {{- with resources.Get "apple-touch-icon.png" }}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ .RelPermalink }}">
+    {{- else -}}
+    {{- if fileExists "static/apple-touch-icon.png" }}
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+    {{- end -}}
+    {{- end -}}
+    {{- end -}}

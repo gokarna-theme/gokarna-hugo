@@ -52,6 +52,9 @@
     {{ printf "<link rel=%q type=%q href=%q title=%q>" .Rel .MediaType.Type .Permalink $.Site.Title | safeHTML }}
     {{ end }}
 
+    <!-- Favicon -->
+    {{- partialCached "favicon.html" . -}}
+
     <!-- Options for user to inject custom html -->
     {{- partial "custom-head.html" . -}}
     {{ if .Site.Params.CustomHeadHTML }}
