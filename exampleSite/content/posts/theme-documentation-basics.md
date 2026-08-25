@@ -295,7 +295,7 @@ Alternatively, you can put these files in the `assets/` directory, or place only
 
 - `favicon.svg`
 - `favicon.ico` (usually 16x16 or 32x32 or both combined)
-- `favicon.png` (should be 180x180 or larger)
+- `favicon.png` (should be 180x180 or larger and square)
 
 in there, and apple-touch-icon and the 32x32 and 16x16 versions will be created for you.
 
