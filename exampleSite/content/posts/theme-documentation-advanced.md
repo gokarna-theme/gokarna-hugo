@@ -409,3 +409,44 @@ The years of `.Date` and `.Lastmod` are used to create a date range for your cop
 [minify]
     minifyOutput = true
 ```
+
+## Install Gokarna as a Hugo module
+
+Derived from the [Hugo modules](https://gohugo.io/hugo-modules/use-modules) documentation.
+
+0. Install `git` and `go`
+
+1. Init your project
+
+    ```sh
+    hugo mod init github.com/user/project
+    ```
+
+2. Add Gokarna to `hugo.toml`
+
+    ```toml
+    [module]
+      [[module.imports]]
+        path = "github.com/gokarna-theme/gokarna-hugo"
+    ```
+
+    N.B. The `theme` key in `hugo.toml` is not needed when installed as a Hugo module.
+
+3. Build your project
+
+    ```sh
+    hugo
+    ```
+
+4. Store module dates, versions, latest commit SHA, etc.
+
+    ```sh
+    git add go.sum go.mod
+    git commit -m 'chore: add gokarna as a hugo module'
+    ```
+
+5. Update modules
+  
+    ```sh
+    hugo mod get -u && hugo mod tidy
+    ```
