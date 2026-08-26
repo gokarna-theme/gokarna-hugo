@@ -6,6 +6,9 @@
   --light-secondary-color: #dddddd;
   --light-tertiary-color: #272822;
   --light-text-color: black;
+
+  --light-gray-color: DimGray;
+  --light-link-color: inherit;
 }
 
 @font-face {
@@ -46,7 +49,7 @@ strong {
 }
 
 a {
-  color: inherit;
+  color: var(--light-link-color);
 }
 
 /* This is set in partials/head.html and is populated via config */
@@ -350,7 +353,7 @@ code {
 
 blockquote {
   border-left: 2px solid var(--light-secondary-color);
-  color: grey;
+  color: var(--light-gray-color);
   padding-left: 1rem;
   margin-left: 0;
 }
@@ -472,7 +475,7 @@ table td {
   overflow-wrap: break-word;
 }
 .post .post-date, .prev-post-date, .next-post-date {
-  color: gray;
+  color: var(--light-gray-color);
 }
 .post .post-content {
   line-height: 1.7;
@@ -621,7 +624,7 @@ table td {
   }
 
   .list-posts .post-date {
-    color: gray;
+    color: var(--light-gray-color);
   }
 
   .footer {
