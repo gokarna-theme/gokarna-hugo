@@ -502,6 +502,23 @@ table td {
   margin-left: auto;
   margin-right: auto;
 }
+.post-content dl {
+  margin: 1.5rem 0;
+}
+.post-content dt {
+  font-weight: 600;
+  margin-top: 1.25rem;
+  padding: 0 0 0 0.75rem;
+  border-left: 2px solid;
+}
+.post-content dt:first-child {
+  margin-top: 0;
+}
+.post-content dd {
+  margin: 0;
+  padding: 0.25rem 0 0 0.75rem;
+  border-left: 2px solid;
+}
 
 /* LIST */
 .list-posts .list-title {
