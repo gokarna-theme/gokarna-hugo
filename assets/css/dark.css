@@ -3,12 +3,19 @@
   --dark-secondary-color: #2d333b;
   --dark-tertiary-color: #646464;
   --dark-text-color: white;
+
+  --dark-gray-color: DarkGray;
+  --dark-link-color: inherit;
 }
 
 html {
   background-color: rgb(var(--dark-primary-color));
   color: var(--dark-text-color);
   fill: var(--dark-text-color);
+}
+
+a {
+  color: var(--dark-link-color);
 }
 
 .header {
@@ -56,7 +63,7 @@ a:hover .feather-moon {
 }
 
 blockquote {
-  color: darkgrey;
+  color: var(--dark-gray-color);
   border-left-color: var(--dark-secondary-color);
 }
 
@@ -99,3 +106,13 @@ video {
   -webkit-filter: hue-rotate(180deg) contrast(100%) invert(100%);
 }
 */
+
+.post .post-date, .prev-post-date, .next-post-date {
+  color: var(--dark-gray-color);
+}
+
+@media only screen and (max-width: 820px) {
+  .list-posts .post-date {
+    color: var(--dark-gray-color);
+  }
+}
