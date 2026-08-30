@@ -11,6 +11,8 @@ Gokarna is an opinionated theme with a focus on minimalism and simplicity.
 - [James Davidson](https://jamesdavidson.xyz)
 - [David Kröll](https://davidkroell.com)
 - [Mansoor Barri](https://mansoorbarri.com)
+- [Oliver Freyermuth](https://olifre.github.io)
+- [JulietEchoDelta](https://github.com/JulietEchoDelta)
 
 ### Demo: [https://gokarna-hugo.netlify.app](https://gokarna-hugo.netlify.app)
 
