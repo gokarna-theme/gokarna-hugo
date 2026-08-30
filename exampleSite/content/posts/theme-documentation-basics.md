@@ -36,6 +36,8 @@ git init
 git submodule add https://github.com/gokarna-theme/gokarna-hugo.git themes/gokarna
 ```
 
+Or [install as a Hugo module](/posts/theme-documentation-advanced/#install-gokarna-as-a-hugo-module).
+
 ### c. Basic Configuration {#basic-configuration}
 
 A simple Hugo [configuration file](https://gohugo.io/getting-started/configuration/#configuration-file) with [menu items](https://gohugo.io/content-management/menus/#properties-front-matter).
