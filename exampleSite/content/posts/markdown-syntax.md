@@ -126,3 +126,11 @@ Tables aren't part of the core Markdown spec, but Hugo supports them out-of-the-
 * Dairy
   * Milk
   * Cheese
+
+### Definition list
+
+My first project
+: This was quite complex, but it brought a lot of fun. You can write a lengthy description here and it will be formatted accordingly.
+
+A recent project
+: I am now learning to play the guitar.
