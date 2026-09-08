@@ -16,4 +16,4 @@ authors = [
   {name = "Avijit Gupta", homepage = "https://526avijitgupta.github.io"}
 ]
 
-min_version = "0.81.0"
+min_version = "0.158.0"
