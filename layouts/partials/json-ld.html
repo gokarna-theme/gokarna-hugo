@@ -5,6 +5,13 @@
   {{- $person = merge $person (dict "image" (dict "@type" "ImageObject" "url" (site.Params.avatarURL | absURL))) -}}
 {{- end -}}
 
+{{- $webSiteReference := dict
+  "@type" "WebSite"
+  "@id" (printf "%s#website" site.BaseURL)
+  "url" site.BaseURL
+  "name" site.Title
+-}}
+
 {{- if .IsHome -}}
   {{- $schema = dict 
     "@context" "https://schema.org" 
@@ -19,13 +26,6 @@
   {{- $rawDesc := .Description | default .Summary -}}
   {{- $cleanDesc := $rawDesc | plainify | htmlUnescape | replaceRE `\r?\n` " " | replaceRE `\s+` " " | truncate 160 -}}
   {{- $pageType := cond (eq .Type "post") "BlogPosting" "WebPage" -}}
-
-  {{- $webSiteReference := dict
-    "@type" "WebSite"
-    "@id" (printf "%s#website" site.BaseURL)
-    "url" site.BaseURL
-    "name" site.Title
-  -}}
 
   {{- $postSchema := dict
     "@context" "https://schema.org"
@@ -70,6 +70,18 @@
     "itemListElement" $itemList
   -}}
   {{- $schema = dict "@context" "https://schema.org" "@graph" (slice $webSiteReference $postSchema $breadcrumbSchema) -}}
+{{- else if or (eq .Kind "taxonomy") (eq .Kind "term") -}}
+  {{- $collectionSchema := dict
+    "@type" "CollectionPage"
+    "@id" .Permalink
+    "url" .Permalink
+    "name" .Title
+    "isPartOf" (dict "@id" (printf "%s#website" site.BaseURL))
+  -}}
+  {{- $schema = dict
+    "@context" "https://schema.org"
+    "@graph" (slice $webSiteReference $collectionSchema)
+  -}}
 {{- end -}}
 
 {{- if $schema -}}
