@@ -46,7 +46,7 @@
   {{- end -}}
 
   {{- $itemList := slice -}}
-  {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 1 "name" "Home" "item" (dict "@type" "WebPage" "@id" site.BaseURL "name" "Home")) -}}
+  {{- $itemList = $itemList | append (dict "@type" "ListItem" "position" 1 "name" "Home" "item" (dict "@type" "WebPage" "@id" site.Home.Permalink "name" "Home")) -}}
   {{- if ne .Section "" -}}
      {{- with site.GetPage .Section -}}
        {{- if ne .Permalink "" -}}
