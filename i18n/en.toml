@@ -16,3 +16,19 @@
   other = 'Tags'
 [Posts]
     other = 'Posts'
+[search]
+  other = 'Search'
+[closeSearch]
+  other = 'Close search'
+[searchPlaceholder]
+  other = 'Search posts'
+[searchResults]
+  other = '{count} results'
+[searchOneResult]
+  other = '1 result'
+[searchTopResults]
+  other = 'Top {shown} of {count} results'
+[searchNoResults]
+  other = 'No results'
+[searchUnavailable]
+  other = 'Search is unavailable right now.'

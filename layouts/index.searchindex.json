@@ -1,0 +1,76 @@
+{{- /*
+  Builds search-index.json, an inverted index read by assets/js/search.js.
+  Rendered only when the site adds "SearchIndex" to its home outputs.
+  Settings come from [params.search] in the site configuration; the defaults below apply when a setting is absent.
+*/ -}}
+{{- $cfg := site.Params.search | default dict -}}
+{{- $boost := $cfg.boost | default dict -}}
+{{- $minWordLen := $cfg.minWordLen | default 2 | int -}}
+{{- $minPrefixLen := $cfg.minPrefixLen | default 3 | int -}}
+{{- $tfCap := $cfg.tfCap | default 10 | float -}}
+{{- $sections := $cfg.types | default (slice "post") -}}
+{{- $tokenPattern := `[a-z0-9]+(?:\+\+|#)?` -}}
+{{- $defaultStopWords := split `a about above after again against all am an and any are as at be because been before being below between both but by can could did do does doing down during each few for from further had has have having he her here hers herself him himself his how i if in into is it its itself just let me more most my myself no nor not now of off on once only or other our ours ourselves out over own same she should so some such than that the their theirs them themselves then there these they this those through to too under until up very was we were what when where which while who whom why will with would you your yours yourself yourselves also can't don't i'm it's let's we'll you'll` " " -}}
+{{- $stopList := $cfg.stopWords | default $defaultStopWords | uniq | sort -}}
+{{- $stop := dict -}}
+{{- range $stopList }}{{ $stop = merge $stop (dict . true) }}{{ end -}}
+
+{{- $fieldsBoost := dict
+  "title" ($boost.title | default 10 | float)
+  "tags" ($boost.tags | default 5 | float)
+  "headings" ($boost.headings | default 3 | float)
+  "body" ($boost.body | default 1 | float)
+-}}
+
+{{- $posts := slice -}}
+{{- $index := newScratch -}}
+{{- range $i, $p := where site.RegularPages "Type" "in" $sections -}}
+  {{- $content := $p.Content | replaceRE `(?s)<pre[^>]*>.*?</pre>` " " -}}
+  {{- $headings := slice -}}
+  {{- range findRE `(?s)<h[23][^>]*>.*?</h[23]>` $content -}}
+    {{- $headings = $headings | append (. | plainify | htmlUnescape | strings.TrimSpace) -}}
+  {{- end -}}
+  {{- $fields := dict
+    "title" $p.Title
+    "tags" (delimit ($p.Params.tags | default slice) " ")
+    "headings" (delimit $headings " ")
+    "body" ($content | plainify | htmlUnescape)
+  -}}
+
+  {{- $scores := newScratch -}}
+  {{- range $field, $text := $fields -}}
+    {{- $counts := newScratch -}}
+    {{- range findRE $tokenPattern (lower $text) -}}
+      {{- if and (ge (len .) $minWordLen) (not (index $stop .)) -}}
+        {{- $counts.Add . 1 -}}
+      {{- end -}}
+    {{- end -}}
+    {{- $fieldBoost := index $fieldsBoost $field -}}
+    {{- range $word, $count := $counts.Values -}}
+      {{- $scores.Add $word (mul (cond (gt $count $tfCap) $tfCap $count) $fieldBoost) -}}
+    {{- end -}}
+  {{- end -}}
+
+  {{- /* Postings are kept as JSON fragments: Scratch.Add can't append nested slices. */ -}}
+  {{- range $word, $score := $scores.Values -}}
+    {{- $index.Add $word (slice (printf "[%d,%v]" $i $score)) -}}
+  {{- end -}}
+  {{- $posts = $posts | append (dict "title" $p.Title "url" $p.RelPermalink "date" ($p.Date.Format "2006-01-02")) -}}
+{{- end -}}
+
+{{- /* Ranging over a map visits keys in sorted order, which prefix search relies on. */ -}}
+{{- $out := newScratch -}}
+{{- range $word, $postings := $index.Values -}}
+  {{- $out.Add "words" (slice $word) -}}
+  {{- $out.Add "postings" (slice (printf "[%s]" (delimit $postings ","))) -}}
+{{- end -}}
+
+{{- $config := dict
+  "minPrefixLen" $minPrefixLen
+  "minWordLen" $minWordLen
+  "tokenPattern" $tokenPattern
+  "stopWords" $stopList
+-}}
+{{- printf `{"config":%s,"posts":%s,"words":%s,"postIndexAndScore":[%s]}`
+  (jsonify $config) (jsonify $posts) (jsonify ($out.Get "words" | default slice)) (delimit ($out.Get "postings" | default slice) ",")
+-}}

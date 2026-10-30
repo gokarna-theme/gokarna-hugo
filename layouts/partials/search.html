@@ -1,0 +1,24 @@
+{{- /* Context: the home page's SearchIndex output format */ -}}
+<div id="search-overlay" class="search-overlay" role="dialog" aria-modal="true" aria-label="{{ i18n "search" | default "Search" }}"
+     data-index-url="{{ .RelPermalink }}"
+     data-text-results="{{ i18n "searchResults" | default "{count} results" }}"
+     data-text-one-result="{{ i18n "searchOneResult" | default "1 result" }}"
+     data-text-top-results="{{ i18n "searchTopResults" | default "Top {shown} of {count} results" }}"
+     data-text-no-results="{{ i18n "searchNoResults" | default "No results" }}"
+     data-text-unavailable="{{ i18n "searchUnavailable" | default "Search is unavailable right now." }}"
+     hidden>
+    <button type="button" class="search-close" aria-label="{{ i18n "closeSearch" | default "Close search" }}">
+        <span data-feather="x"></span>
+        <span class="search-close-hint" aria-hidden="true">Esc</span>
+    </button>
+    <div class="search-container">
+        <div class="search-input-wrapper">
+            <span data-feather="search" aria-hidden="true"></span>
+            <input id="search-input" class="search-input" type="search" autocomplete="off" spellcheck="false"
+                   placeholder="{{ i18n "searchPlaceholder" | default "Search posts" }}"
+                   aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-results">
+        </div>
+        <p id="search-count" class="search-count" aria-live="polite"></p>
+        <ul id="search-results" class="search-results"></ul>
+    </div>
+</div>
