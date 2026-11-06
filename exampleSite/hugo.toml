@@ -100,3 +100,7 @@ title = "Gokarna"
 
 [minify]
     minifyOutput = true
+
+# Enable site search (adds a search icon to the header)
+[outputs]
+  home = ["HTML", "RSS", "SearchIndex"]

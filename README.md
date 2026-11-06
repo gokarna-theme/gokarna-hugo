@@ -29,6 +29,7 @@ Gokarna is an opinionated theme with a focus on minimalism and simplicity.
 Gokarna is fast, responsive, and [SEO-friendly](#performance).
 
 - Light and dark modes
+- [Client-side search](https://gokarna-hugo.netlify.app/posts/theme-documentation-basics/#search), built with the site
 - [Feather](https://feathericons.com/) and [Simple](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#icons-on-homepage) icons
 - [KaTeX](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#katex) math typesetting 
 - [Syntax highlighting](https://gokarna-hugo.netlify.app/posts/theme-documentation-advanced/#syntax-highlighting)

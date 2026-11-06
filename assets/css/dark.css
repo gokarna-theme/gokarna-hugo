@@ -26,6 +26,15 @@ a {
   background: rgba(var(--dark-primary-color), 1);
 }
 
+.search-overlay {
+  background-color: rgb(var(--dark-primary-color));
+  color: var(--dark-text-color);
+}
+
+.search-input-wrapper {
+  border-bottom-color: var(--dark-tertiary-color);
+}
+
 .nav-links .nav-icons-divider {
   color: var(--dark-secondary-color);
 }

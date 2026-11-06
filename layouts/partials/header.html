@@ -1,3 +1,4 @@
+{{ $searchIndex := site.Home.OutputFormats.Get "SearchIndex" }}
 <header class="header">
     <nav class="header-nav">
 
@@ -23,6 +24,14 @@
             {{ end }}
 
             <span class="nav-icons-divider"></span>
+            {{ if $searchIndex }}
+            <div class="nav-link search-toggle">
+                <a href="#search" role="button" aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-overlay" aria-expanded="false">
+                    <span data-feather="search"></span>
+                </a>
+            </div>
+            {{ end }}
+
             <div class="nav-link dark-theme-toggle">
                 <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
                 <a aria-hidden="true" role="switch">
@@ -46,6 +55,13 @@
                     </a>
                 </li>
                 {{ end }}
+                {{ if $searchIndex }}
+                <li class="nav-item search-toggle">
+                    <a href="#search" role="button" aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-overlay" aria-expanded="false">
+                        <span data-feather="search"></span>
+                    </a>
+                </li>
+                {{ end }}
                 <li class="nav-item dark-theme-toggle">
                     <span class="sr-only dark-theme-toggle-screen-reader-target">theme</span>
                     <a role="switch">
@@ -57,3 +73,4 @@
         </div>
     </nav>
 </header>
+{{ with $searchIndex }}{{ partial "search.html" . }}{{ end }}

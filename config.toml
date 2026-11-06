@@ -1,0 +1,11 @@
+# Theme defaults, merged into the site configuration.
+
+# Search index read by assets/js/search.js. To enable search, a site adds
+# "SearchIndex" to its home outputs (Hugo does not merge `outputs` from themes):
+#   [outputs]
+#     home = ["HTML", "RSS", "SearchIndex"]
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "search-index"
+  isPlainText = true
+  notAlternative = true
