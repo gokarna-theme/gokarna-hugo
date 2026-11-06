@@ -366,6 +366,13 @@ The search index is a JSON file Hugo builds with your site, so search works with
   home = ["HTML", "RSS", "SearchIndex"]
 ```
 
+Search currently supports English content only: words are split on the letters `a`–`z` and digits, so text in other scripts (such as Cyrillic or Chinese) is not indexed and can't be searched. On a multilingual site, enable search for English alone by putting the outputs under that language instead of the global `[outputs]` block:
+
+```toml
+[languages.en.outputs]
+  home = ["HTML", "RSS", "SearchIndex"]
+```
+
 Optionally, tune the index under `[params.search]`. These are the default values:
 
 ```toml
