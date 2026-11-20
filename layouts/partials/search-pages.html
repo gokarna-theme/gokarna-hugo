@@ -1,0 +1,9 @@
+{{- /*
+  The pages search indexes: regular pages whose type is in [params.search] types (default ["post"]).
+  Shared by layouts/index.searchindex.json and partials/search-index-version.html, so the index and
+  its fingerprint always cover the same pages.
+*/ -}}
+{{- $cfg := site.Params.search | default dict -}}
+{{- $types := slice "post" -}}
+{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
+{{- return where site.RegularPages "Type" "in" $types -}}

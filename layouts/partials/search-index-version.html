@@ -5,9 +5,7 @@
 */ -}}
 {{- $cfg := site.Params.search | default dict -}}
 {{- $sig := slice hugo.Version (jsonify $cfg) -}}
-{{- $types := slice "post" -}}
-{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
-{{- range where site.RegularPages "Type" "in" $types -}}
+{{- range partial "search-pages.html" . -}}
   {{- $sig = $sig | append .RelPermalink .Title (.Date.Format "2006-01-02") (jsonify (partial "page-tags.html" .)) (md5 .Content) -}}
 {{- end -}}
 {{- return substr (md5 (delimit $sig "\n")) 0 10 -}}

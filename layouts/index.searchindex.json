@@ -41,9 +41,7 @@
 
 {{- $posts := slice -}}
 {{- $index := newScratch -}}
-{{- $types := slice "post" -}}
-{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
-{{- range $i, $p := where site.RegularPages "Type" "in" $types -}}
+{{- range $i, $p := partial "search-pages.html" . -}}
   {{- /* Code blocks, scripts and styles are not indexed. */ -}}
   {{- $content := $p.Content | replaceRE `(?s)<(?:pre|script|style)\b[^>]*>.*?</(?:pre|script|style)>` " " -}}
   {{- /* Headings of every level are indexed in their own field, and only there. */ -}}
