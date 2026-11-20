@@ -1,5 +1,5 @@
 // Client side of the build-time search index (see layouts/index.searchindex.json).
-// Bundled into every page; does nothing unless the site enables the SearchIndex output.
+// Bundled only when the site enables the SearchIndex output (see partials/head.html).
 document.addEventListener('DOMContentLoaded', function () {
   const overlay = document.getElementById('search-overlay');
   if (!overlay) return;
@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let debounceTimer = null;
   let pushedHistory = false;
   let inertElements = [];
+  let loadFailed = false;
 
   function loadIndex() {
     if (!loading) {
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function () {
           return index;
         })
         .catch((err) => {
-          loading = null; // allow a retry on the next open
+          loadFailed = true; // keep the rejection until the next open, rather than refetch per keystroke
           throw err;
         });
     }
@@ -181,10 +182,6 @@ document.addEventListener('DOMContentLoaded', function () {
       });
   }
 
-  function setExpanded(expanded) {
-    toggles.forEach((t) => t.setAttribute('aria-expanded', String(expanded)));
-  }
-
   // Makes everything outside the overlay inert, so focus and screen readers stay in the dialog.
   function setBackgroundInert(inert) {
     if (!inert) {
@@ -211,10 +208,17 @@ document.addEventListener('DOMContentLoaded', function () {
   function open(trigger, source) {
     if (!overlay.hidden) return;
     lastToggle = trigger || null;
+    if (loadFailed) {
+      loading = null; // retry a failed index load once per open
+      loadFailed = false;
+    }
+
+    // Hiding the page scrollbar would shift the layout sideways; keep its space if it had one.
+    const root = document.documentElement;
+    root.classList.toggle('search-open-gutter', window.innerWidth > root.clientWidth);
+    root.classList.add('search-open');
     overlay.hidden = false;
-    document.documentElement.classList.add('search-open');
     setBackgroundInert(true);
-    setExpanded(true);
 
     // An entry for HASH lets the browser's back button close the overlay; closing then steps back
     // over it. The state marks entries added here, so forward navigation onto one can do the same.
@@ -235,9 +239,8 @@ document.addEventListener('DOMContentLoaded', function () {
   function close(fromHistory) {
     if (overlay.hidden) return;
     overlay.hidden = true;
-    document.documentElement.classList.remove('search-open');
+    document.documentElement.classList.remove('search-open', 'search-open-gutter');
     setBackgroundInert(false);
-    setExpanded(false);
 
     if (!fromHistory) {
       if (pushedHistory) history.back();

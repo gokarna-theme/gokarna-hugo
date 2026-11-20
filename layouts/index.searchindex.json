@@ -44,16 +44,19 @@
 {{- $posts := slice -}}
 {{- $index := newScratch -}}
 {{- range $i, $p := where site.RegularPages "Type" "in" $types -}}
-  {{- $content := $p.Content | replaceRE `(?s)<pre[^>]*>.*?</pre>` " " -}}
-  {{- $headings := slice -}}
-  {{- range findRE `(?s)<h[23][^>]*>.*?</h[23]>` $content -}}
-    {{- $headings = $headings | append (. | plainify | htmlUnescape | strings.TrimSpace) -}}
-  {{- end -}}
+  {{- /* Code blocks, scripts and styles are not indexed. */ -}}
+  {{- $content := $p.Content | replaceRE `(?s)<(?:pre|script|style)\b[^>]*>.*?</(?:pre|script|style)>` " " -}}
+  {{- /* Headings of every level are indexed in their own field, and only there. */ -}}
+  {{- $headingPattern := `(?s)<h[1-6]\b[^>]*>.*?</h[1-6]>` -}}
+  {{- $headings := delimit (findRE $headingPattern $content | default slice) " " -}}
+  {{- $body := $content | replaceRE $headingPattern " " -}}
+  {{- /* Tags become spaces rather than vanishing, so words in adjacent elements stay apart. */ -}}
+  {{- $tag := `<[^>]+>` -}}
   {{- $fields := dict
     "title" $p.Title
     "tags" (delimit ($p.Params.tags | default slice) " ")
-    "headings" (delimit $headings " ")
-    "body" ($content | plainify | htmlUnescape)
+    "headings" ($headings | replaceRE $tag " " | htmlUnescape)
+    "body" ($body | replaceRE $tag " " | htmlUnescape)
   -}}
 
   {{- $scores := newScratch -}}

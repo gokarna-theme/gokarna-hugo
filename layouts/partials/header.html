@@ -26,7 +26,7 @@
             <span class="nav-icons-divider"></span>
             {{ if $searchIndex }}
             <div class="nav-link search-toggle">
-                <button type="button" aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-overlay" aria-expanded="false">
+                <button type="button" aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-overlay" aria-haspopup="dialog">
                     <span data-feather="search"></span>
                 </button>
             </div>
@@ -57,7 +57,7 @@
                 {{ end }}
                 {{ if $searchIndex }}
                 <li class="nav-item search-toggle">
-                    <button type="button" aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-overlay" aria-expanded="false">
+                    <button type="button" aria-label="{{ i18n "search" | default "Search" }}" aria-controls="search-overlay" aria-haspopup="dialog">
                         <span data-feather="search"></span>
                     </button>
                 </li>

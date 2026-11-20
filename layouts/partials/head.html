@@ -47,7 +47,13 @@
     {{ $cssDark := resources.Get "css/dark.css" | minify }}
     <link id="dark-theme" rel="stylesheet" href="{{ $cssDark.RelPermalink }}">
 
-    {{ $jsBundle := resources.Match "js/**.js" | resources.Concat "js/bundle.js" | minify | resources.Fingerprint "sha256" }}
+    {{/* search.js is left out unless search is enabled; the bundles need distinct names, as Concat caches by name. */}}
+    {{ $search := site.Home.OutputFormats.Get "SearchIndex" }}
+    {{ $js := slice }}
+    {{ range resources.Match "js/**.js" }}
+    {{ if or $search (ne (strings.TrimPrefix "/" .Name) "js/search.js") }}{{ $js = $js | append . }}{{ end }}
+    {{ end }}
+    {{ $jsBundle := $js | resources.Concat (cond (not $search) "js/bundle.js" "js/bundle-search.js") | minify | resources.Fingerprint "sha256" }}
     <script src="{{ $jsBundle.RelPermalink }}" integrity="{{ $jsBundle.Data.Integrity }}"></script>
 
     {{ range .AlternativeOutputFormats }}

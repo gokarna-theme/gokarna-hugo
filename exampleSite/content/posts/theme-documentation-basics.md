@@ -402,4 +402,4 @@ Optionally, tune the index under `[params.search]`. These are the default values
 
 Indexing body text is most of the build cost: a site with several hundred long posts can take a few extra seconds to build, and `hugo server` rebuilds the index whenever content changes. If that gets slow, lower `maxBodyWords`, or set `body = 0` to search only titles, tags, and headings.
 
-Code blocks are not indexed. Search labels can be translated through the `search*` keys in `i18n/`.
+Code blocks are not indexed, and headings of every level count as headings rather than body text. Search labels can be translated through the `search*` keys in `i18n/`.

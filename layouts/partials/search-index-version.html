@@ -1,0 +1,13 @@
+{{- /*
+  Fingerprint of what search-index.json is built from, added to its URL so that browsers and CDNs
+  fetch a fresh index once posts or search settings change. Call with partialCached, keyed by
+  language, so it is computed once per build. Must select pages like layouts/index.searchindex.json.
+*/ -}}
+{{- $cfg := site.Params.search | default dict -}}
+{{- $types := slice "post" -}}
+{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
+{{- $sig := slice hugo.Version (jsonify $cfg) -}}
+{{- range where site.RegularPages "Type" "in" $types -}}
+  {{- $sig = $sig | append .RelPermalink .Title (.Date.Format "2006-01-02") (jsonify .Params.tags) (md5 .Content) -}}
+{{- end -}}
+{{- return substr (md5 (delimit $sig "\n")) 0 10 -}}

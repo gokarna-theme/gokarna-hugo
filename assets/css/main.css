@@ -275,6 +275,9 @@ a:hover .feather-sun {
 html.search-open {
   overflow: hidden;
 }
+html.search-open-gutter {
+  scrollbar-gutter: stable;
+}
 .search-overlay {
   background-color: rgb(var(--light-primary-color));
   box-sizing: border-box;
