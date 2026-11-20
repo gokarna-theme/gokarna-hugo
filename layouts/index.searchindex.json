@@ -15,8 +15,6 @@
 {{- if isset $cfg "tfcap" }}{{ $tfCap = float $cfg.tfCap }}{{ end -}}
 {{- $maxBodyWords := 0 -}}
 {{- if isset $cfg "maxbodywords" }}{{ $maxBodyWords = int $cfg.maxBodyWords }}{{ end -}}
-{{- $types := slice "post" -}}
-{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
 
 {{- /* Letters, combining marks and digits of any script; must match normalize/tokenize in assets/js/search.js. */ -}}
 {{- $tokenPattern := `[\p{L}\p{M}\p{N}]+(?:\+\+|#)?` -}}
@@ -43,6 +41,8 @@
 
 {{- $posts := slice -}}
 {{- $index := newScratch -}}
+{{- $types := slice "post" -}}
+{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
 {{- range $i, $p := where site.RegularPages "Type" "in" $types -}}
   {{- /* Code blocks, scripts and styles are not indexed. */ -}}
   {{- $content := $p.Content | replaceRE `(?s)<(?:pre|script|style)\b[^>]*>.*?</(?:pre|script|style)>` " " -}}
@@ -54,7 +54,7 @@
   {{- $tag := `<[^>]+>` -}}
   {{- $fields := dict
     "title" $p.Title
-    "tags" (delimit ($p.Params.tags | default slice) " ")
+    "tags" (delimit (partial "page-tags.html" $p) " ")
     "headings" ($headings | replaceRE $tag " " | htmlUnescape)
     "body" ($body | replaceRE $tag " " | htmlUnescape)
   -}}

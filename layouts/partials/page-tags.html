@@ -1,0 +1,8 @@
+{{- /* The page's tags as a list. Front matter may also give a single tag as a plain string (tags: foo). */ -}}
+{{- $tags := .Params.tags -}}
+{{- if not $tags -}}
+  {{- $tags = slice -}}
+{{- else if not (reflect.IsSlice $tags) -}}
+  {{- $tags = slice $tags -}}
+{{- end -}}
+{{- return $tags -}}

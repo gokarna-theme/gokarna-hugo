@@ -6,7 +6,7 @@
 
         {{ $displayDate := true }}
 	{{ $displayDescription := true }}
-	{{ $postTags := or .Params.Tags slice }}
+	{{ $postTags := partial "page-tags.html" . }}
 	{{ $hiddenTags := or .Site.Params.Hidden.Tags slice }}
 	{{ $tagsHidePostDate := or .Site.Params.Hidden.TagsPostDate slice }}
         {{ $tagsHidePostDescription := or .Site.Params.Hidden.TagsPostDescription slice }}
