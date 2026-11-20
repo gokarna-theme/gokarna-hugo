@@ -346,7 +346,7 @@ html.search-open-gutter {
 }
 .search-input::placeholder {
   color: inherit;
-  opacity: 0.45;
+  opacity: 0.54; /* lowest that meets WCAG AA 4.5:1 (4.6:1 light, 5.4:1 dark) */
 }
 .search-count {
   font-size: 0.85em;
