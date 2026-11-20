@@ -21,7 +21,7 @@
 [closeSearch]
   other = 'Suche schließen'
 [searchPlaceholder]
-  other = 'Beiträge durchsuchen'
+  other = 'Einträge durchsuchen'
 [searchResults]
   other = '{count} Ergebnisse'
 [searchOneResult]

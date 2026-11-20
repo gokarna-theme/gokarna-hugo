@@ -21,7 +21,7 @@
 [closeSearch]
   other = 'Zamknij wyszukiwanie'
 [searchPlaceholder]
-  other = 'Szukaj wpisów'
+  other = 'Szukaj postów'
 [searchResults]
   other = 'Wyniki: {count}'
 [searchOneResult]
@@ -31,4 +31,4 @@
 [searchNoResults]
   other = 'Brak wyników'
 [searchUnavailable]
-  other = 'Wyszukiwanie jest teraz niedostępne.'
+  other = 'Wyszukiwanie jest obecnie niedostępne.'

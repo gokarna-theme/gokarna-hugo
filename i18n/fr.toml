@@ -21,7 +21,7 @@
 [closeSearch]
   other = 'Fermer la recherche'
 [searchPlaceholder]
-  other = 'Rechercher des articles'
+  other = 'Rechercher des posts'
 [searchResults]
   other = '{count} résultats'
 [searchOneResult]

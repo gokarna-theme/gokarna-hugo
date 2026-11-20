@@ -21,13 +21,13 @@
 [closeSearch]
   other = 'Cerrar búsqueda'
 [searchPlaceholder]
-  other = 'Buscar publicaciones'
+  other = 'Buscar entradas'
 [searchResults]
   other = '{count} resultados'
 [searchOneResult]
   other = '1 resultado'
 [searchTopResults]
-  other = 'Los {shown} mejores de {count} resultados'
+  other = 'Los {shown} mejores resultados de {count}'
 [searchNoResults]
   other = 'Sin resultados'
 [searchUnavailable]

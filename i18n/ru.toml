@@ -27,4 +27,4 @@
 [searchNoResults]
   other = 'Ничего не найдено'
 [searchUnavailable]
-  other = 'Поиск сейчас недоступен.'
+  other = 'Поиск временно недоступен.'

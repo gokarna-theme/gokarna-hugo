@@ -23,12 +23,12 @@
 [searchPlaceholder]
   other = '搜尋文章'
 [searchResults]
-  other = '{count} 個結果'
+  other = '{count} 筆結果'
 [searchOneResult]
-  other = '1 個結果'
+  other = '1 筆結果'
 [searchTopResults]
-  other = '前 {shown} 個結果，共 {count} 個'
+  other = '顯示前 {shown} 筆，共 {count} 筆結果'
 [searchNoResults]
-  other = '沒有結果'
+  other = '找不到結果'
 [searchUnavailable]
-  other = '目前無法使用搜尋。'
+  other = '目前無法使用搜尋功能。'
