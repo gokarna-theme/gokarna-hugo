@@ -2,29 +2,48 @@
   Builds search-index.json, an inverted index read by assets/js/search.js.
   Rendered only when the site adds "SearchIndex" to its home outputs.
   Settings come from [params.search] in the site configuration; the defaults below apply when a setting is absent.
+  Settings are read with isset (lowercase keys), not default, so that 0 and [] are honoured.
 */ -}}
 {{- $cfg := site.Params.search | default dict -}}
 {{- $boost := $cfg.boost | default dict -}}
-{{- $minWordLen := $cfg.minWordLen | default 2 | int -}}
-{{- $minPrefixLen := $cfg.minPrefixLen | default 3 | int -}}
-{{- $tfCap := $cfg.tfCap | default 10 | float -}}
-{{- $sections := $cfg.types | default (slice "post") -}}
-{{- $tokenPattern := `[a-z0-9]+(?:\+\+|#)?` -}}
-{{- $defaultStopWords := split `a about above after again against all am an and any are as at be because been before being below between both but by can could did do does doing down during each few for from further had has have having he her here hers herself him himself his how i if in into is it its itself just let me more most my myself no nor not now of off on once only or other our ours ourselves out over own same she should so some such than that the their theirs them themselves then there these they this those through to too under until up very was we were what when where which while who whom why will with would you your yours yourself yourselves also can't don't i'm it's let's we'll you'll` " " -}}
-{{- $stopList := $cfg.stopWords | default $defaultStopWords | uniq | sort -}}
-{{- $stop := dict -}}
-{{- range $stopList }}{{ $stop = merge $stop (dict . true) }}{{ end -}}
 
-{{- $fieldsBoost := dict
-  "title" ($boost.title | default 10 | float)
-  "tags" ($boost.tags | default 5 | float)
-  "headings" ($boost.headings | default 3 | float)
-  "body" ($boost.body | default 1 | float)
--}}
+{{- $minWordLen := 2 -}}
+{{- if isset $cfg "minwordlen" }}{{ $minWordLen = int $cfg.minWordLen }}{{ end -}}
+{{- $minPrefixLen := 3 -}}
+{{- if isset $cfg "minprefixlen" }}{{ $minPrefixLen = int $cfg.minPrefixLen }}{{ end -}}
+{{- $tfCap := 10.0 -}}
+{{- if isset $cfg "tfcap" }}{{ $tfCap = float $cfg.tfCap }}{{ end -}}
+{{- $maxBodyWords := 0 -}}
+{{- if isset $cfg "maxbodywords" }}{{ $maxBodyWords = int $cfg.maxBodyWords }}{{ end -}}
+{{- $types := slice "post" -}}
+{{- if isset $cfg "types" }}{{ $types = $cfg.types }}{{ end -}}
+
+{{- /* Letters, combining marks and digits of any script; must match normalize/tokenize in assets/js/search.js. */ -}}
+{{- $tokenPattern := `[\p{L}\p{M}\p{N}]+(?:\+\+|#)?` -}}
+
+{{- /* Contractions are listed as the fragments the tokenizer splits them into ("don't" -> "don"). */ -}}
+{{- $defaultStopWords := split `a about above after again against all also am an and any are aren as at be because been before being below between both but by can could couldn did didn do does doesn doing don down during each few for from further had hadn has hasn have haven having he her here hers herself him himself his how i if in into is isn it its itself just let ll me more most my myself no nor not now of off on once only or other our ours ourselves out over own re same she should shouldn so some such than that the their theirs them themselves then there these they this those through to too under until up ve very was wasn we were weren what when where which while who whom why will with won would wouldn you your yours yourself yourselves` " " -}}
+{{- $stopSource := $defaultStopWords -}}
+{{- if isset $cfg "stopwords" }}{{ $stopSource = $cfg.stopWords }}{{ end -}}
+{{- $stopList := slice -}}
+{{- $stop := dict -}}
+{{- range $stopSource -}}
+  {{- $word := replace (replace (lower .) "ς" "σ") "i\u0307" "i" -}}
+  {{- if not (index $stop $word) -}}
+    {{- $stopList = $stopList | append $word -}}
+    {{- $stop = merge $stop (dict $word true) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Fields with a boost of 0 are skipped entirely, which also saves build time. */ -}}
+{{- $fieldsBoost := dict "title" 10.0 "tags" 5.0 "headings" 3.0 "body" 1.0 -}}
+{{- range $field, $_ := $fieldsBoost -}}
+  {{- if isset $boost $field }}{{ $fieldsBoost = merge $fieldsBoost (dict $field (float (index $boost $field))) }}{{ end -}}
+{{- end -}}
 
 {{- $posts := slice -}}
 {{- $index := newScratch -}}
-{{- range $i, $p := where site.RegularPages "Type" "in" $sections -}}
+{{- range $i, $p := where site.RegularPages "Type" "in" $types -}}
   {{- $content := $p.Content | replaceRE `(?s)<pre[^>]*>.*?</pre>` " " -}}
   {{- $headings := slice -}}
   {{- range findRE `(?s)<h[23][^>]*>.*?</h[23]>` $content -}}
@@ -38,31 +57,29 @@
   -}}
 
   {{- $scores := newScratch -}}
-  {{- range $field, $text := $fields -}}
-    {{- $counts := newScratch -}}
-    {{- range findRE $tokenPattern (lower $text) -}}
-      {{- if and (ge (len .) $minWordLen) (not (index $stop .)) -}}
+  {{- range $field, $fieldBoost := $fieldsBoost -}}
+    {{- if gt $fieldBoost 0.0 -}}
+      {{- $text := replace (replace (lower (index $fields $field)) "ς" "σ") "i\u0307" "i" -}}
+      {{- $limit := -1 -}}
+      {{- if and (eq $field "body") (gt $maxBodyWords 0) }}{{ $limit = $maxBodyWords }}{{ end -}}
+      {{- $counts := newScratch -}}
+      {{- range findRE $tokenPattern $text $limit -}}
         {{- $counts.Add . 1 -}}
       {{- end -}}
-    {{- end -}}
-    {{- $fieldBoost := index $fieldsBoost $field -}}
-    {{- range $word, $count := $counts.Values -}}
-      {{- $scores.Add $word (mul (cond (gt $count $tfCap) $tfCap $count) $fieldBoost) -}}
+      {{- /* Length and stop-word checks run once per distinct word rather than once per occurrence. */ -}}
+      {{- range $word, $count := $counts.Values -}}
+        {{- if and (ge (strings.RuneCount $word) $minWordLen) (not (index $stop $word)) -}}
+          {{- $scores.Add $word (mul (math.Min $count $tfCap) $fieldBoost) -}}
+        {{- end -}}
+      {{- end -}}
     {{- end -}}
   {{- end -}}
 
-  {{- /* Postings are kept as JSON fragments: Scratch.Add can't append nested slices. */ -}}
+  {{- /* Postings are built as JSON text: Scratch.Add concatenates strings cheaply but can't append nested slices. */ -}}
   {{- range $word, $score := $scores.Values -}}
-    {{- $index.Add $word (slice (printf "[%d,%v]" $i $score)) -}}
+    {{- $index.Add $word (printf ",[%d,%v]" $i $score) -}}
   {{- end -}}
   {{- $posts = $posts | append (dict "title" $p.Title "url" $p.RelPermalink "date" ($p.Date.Format "2006-01-02")) -}}
-{{- end -}}
-
-{{- /* Ranging over a map visits keys in sorted order, which prefix search relies on. */ -}}
-{{- $out := newScratch -}}
-{{- range $word, $postings := $index.Values -}}
-  {{- $out.Add "words" (slice $word) -}}
-  {{- $out.Add "postings" (slice (printf "[%s]" (delimit $postings ","))) -}}
 {{- end -}}
 
 {{- $config := dict
@@ -71,6 +88,15 @@
   "tokenPattern" $tokenPattern
   "stopWords" $stopList
 -}}
-{{- printf `{"config":%s,"posts":%s,"words":%s,"postIndexAndScore":[%s]}`
-  (jsonify $config) (jsonify $posts) (jsonify ($out.Get "words" | default slice)) (delimit ($out.Get "postings" | default slice) ",")
--}}
+{{- /*
+  Written out directly rather than collected first, which is much faster on large sites.
+  Ranging over a map visits keys in byte order (Unicode code point order), which prefix search relies on.
+*/ -}}
+{{- $words := $index.Values -}}
+{"config":{{ jsonify $config }},"posts":{{ jsonify $posts }},"words":[
+{{- $first := true -}}
+{{- range $word, $_ := $words }}{{ if not $first }},{{ end }}{{ jsonify $word }}{{ $first = false }}{{ end -}}
+],"postIndexAndScore":[
+{{- $first = true -}}
+{{- range $word, $postings := $words }}{{ if not $first }},{{ end }}[{{ strings.TrimPrefix "," $postings }}]{{ $first = false }}{{ end -}}
+]}

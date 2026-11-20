@@ -16,3 +16,19 @@
     other = 'Tags'
 [Posts]
     other = 'Einträge'
+[search]
+  other = 'Suche'
+[closeSearch]
+  other = 'Suche schließen'
+[searchPlaceholder]
+  other = 'Beiträge durchsuchen'
+[searchResults]
+  other = '{count} Ergebnisse'
+[searchOneResult]
+  other = '1 Ergebnis'
+[searchTopResults]
+  other = 'Top {shown} von {count} Ergebnissen'
+[searchNoResults]
+  other = 'Keine Ergebnisse'
+[searchUnavailable]
+  other = 'Die Suche ist gerade nicht verfügbar.'

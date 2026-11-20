@@ -12,3 +12,19 @@
   other = 'Вперед'
 [tags]
   other = 'Теги'
+[search]
+  other = 'Поиск'
+[closeSearch]
+  other = 'Закрыть поиск'
+[searchPlaceholder]
+  other = 'Поиск по записям'
+[searchResults]
+  other = 'Найдено: {count}'
+[searchOneResult]
+  other = 'Найдено: 1'
+[searchTopResults]
+  other = 'Показано {shown} из {count}'
+[searchNoResults]
+  other = 'Ничего не найдено'
+[searchUnavailable]
+  other = 'Поиск сейчас недоступен.'

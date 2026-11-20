@@ -357,7 +357,7 @@ enableRobotsTXT = true
 
 ### Search
 
-Add a search icon to the header that opens a full-page search over your posts. Results appear as you type: words of three or more letters also match as prefixes (`hado` finds "Hadoop"), and posts matching more of the query words rank higher. Matches in titles count more than matches in tags, headings, or body text.
+Add a search icon to the header that opens a full-page search over your posts. Results appear as you type: words of three or more letters also match as prefixes (`hado` finds "Hadoop"), and posts matching more of the query words rank first. Among those, matches in titles count more than matches in tags, headings, or body text.
 
 The search index is a JSON file Hugo builds with your site, so search works without a server or third-party service. Enable it by adding the `SearchIndex` output format to the home page:
 
@@ -366,12 +366,14 @@ The search index is a JSON file Hugo builds with your site, so search works with
   home = ["HTML", "RSS", "SearchIndex"]
 ```
 
-Search currently supports English content only: words are split on the letters `a`–`z` and digits, so text in other scripts (such as Cyrillic or Chinese) is not indexed and can't be searched. On a multilingual site, enable search for English alone by putting the outputs under that language instead of the global `[outputs]` block:
+Each language of a multilingual site gets its own index. Search works in any language that separates words with spaces, in any script (Latin, Cyrillic, Greek, Devanagari, and so on). Accents are significant, so `cafe` does not find "café". Chinese, Japanese, and Thai don't separate words with spaces, so a whole run of text is indexed as one word and only matches from its start. The built-in stop-word list (common words that are not indexed) is English; set your own per language:
 
 ```toml
-[languages.en.outputs]
-  home = ["HTML", "RSS", "SearchIndex"]
+[languages.de.params.search]
+  stopWords = ["der", "die", "das", "und", "ist"]
 ```
+
+A link to `/#search-overlay` opens the search.
 
 Optionally, tune the index under `[params.search]`. These are the default values:
 
@@ -385,15 +387,19 @@ Optionally, tune the index under `[params.search]`. These are the default values
   minPrefixLen = 3
   # Maximum times a word counts per field, so repetition can't outweigh a title match
   tfCap = 10
-  # Replace the built-in English stop-word list
+  # Index only the first this many words of each post's body; 0 indexes all of it
+  maxBodyWords = 0
+  # Replace the built-in English stop-word list; [] indexes every word
   # stopWords = ["a", "an", "the"]
 
-  # How much a match in each field counts
+  # How much a match in each field counts; 0 leaves the field out of the index
   [params.search.boost]
     title = 10
     tags = 5
     headings = 3
     body = 1
 ```
+
+Indexing body text is most of the build cost: a site with several hundred long posts can take a few extra seconds to build, and `hugo server` rebuilds the index whenever content changes. If that gets slow, lower `maxBodyWords`, or set `body = 0` to search only titles, tags, and headings.
 
 Code blocks are not indexed. Search labels can be translated through the `search*` keys in `i18n/`.

@@ -16,3 +16,19 @@
   other = '標籤'
 [Posts]
     other = '文章'
+[search]
+  other = '搜尋'
+[closeSearch]
+  other = '關閉搜尋'
+[searchPlaceholder]
+  other = '搜尋文章'
+[searchResults]
+  other = '{count} 個結果'
+[searchOneResult]
+  other = '1 個結果'
+[searchTopResults]
+  other = '前 {shown} 個結果，共 {count} 個'
+[searchNoResults]
+  other = '沒有結果'
+[searchUnavailable]
+  other = '目前無法使用搜尋。'

@@ -16,3 +16,19 @@
   other = 'Tagi'
 [Posts]
   other = 'Posty'
+[search]
+  other = 'Szukaj'
+[closeSearch]
+  other = 'Zamknij wyszukiwanie'
+[searchPlaceholder]
+  other = 'Szukaj wpisów'
+[searchResults]
+  other = 'Wyniki: {count}'
+[searchOneResult]
+  other = 'Wyniki: 1'
+[searchTopResults]
+  other = 'Najlepsze wyniki: {shown} z {count}'
+[searchNoResults]
+  other = 'Brak wyników'
+[searchUnavailable]
+  other = 'Wyszukiwanie jest teraz niedostępne.'

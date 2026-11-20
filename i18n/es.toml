@@ -16,3 +16,19 @@
   other = 'Etiquetas'
 [Posts]
   other = 'Entradas'
+[search]
+  other = 'Buscar'
+[closeSearch]
+  other = 'Cerrar búsqueda'
+[searchPlaceholder]
+  other = 'Buscar publicaciones'
+[searchResults]
+  other = '{count} resultados'
+[searchOneResult]
+  other = '1 resultado'
+[searchTopResults]
+  other = 'Los {shown} mejores de {count} resultados'
+[searchNoResults]
+  other = 'Sin resultados'
+[searchUnavailable]
+  other = 'La búsqueda no está disponible en este momento.'

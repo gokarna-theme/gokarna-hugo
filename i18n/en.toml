@@ -22,6 +22,9 @@
   other = 'Close search'
 [searchPlaceholder]
   other = 'Search posts'
+# Search result counts: {count} and {shown} are filled in by assets/js/search.js, which only
+# tells one result from several. Languages with more plural forms can phrase these without
+# agreement, e.g. 'Wyniki: {count}' in pl.toml.
 [searchResults]
   other = '{count} results'
 [searchOneResult]

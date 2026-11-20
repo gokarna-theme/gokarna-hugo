@@ -16,3 +16,19 @@
   other = 'Marcadores'
 [Posts]
     other = 'Postagens'
+[search]
+  other = 'Pesquisar'
+[closeSearch]
+  other = 'Fechar pesquisa'
+[searchPlaceholder]
+  other = 'Pesquisar publicações'
+[searchResults]
+  other = '{count} resultados'
+[searchOneResult]
+  other = '1 resultado'
+[searchTopResults]
+  other = 'Os {shown} melhores de {count} resultados'
+[searchNoResults]
+  other = 'Nenhum resultado'
+[searchUnavailable]
+  other = 'A pesquisa não está disponível no momento.'
